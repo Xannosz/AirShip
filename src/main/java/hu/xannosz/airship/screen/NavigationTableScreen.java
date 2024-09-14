@@ -119,14 +119,14 @@ public class NavigationTableScreen extends AbstractContainerScreen<NavigationTab
 	@Override
 	protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
 		if (!getMenu().getMapData().getName().isEmpty()) {
-			guiGraphics.drawString(font, Component.translatable("navigationtable.name").append(getMenu().getMapData().getName()), 115, 23, 0x904931,false);
-			guiGraphics.drawString(font, Component.translatable("navigationtable.direction." + getMenu().getMapData().getDirection().name()), 115, 33, 0x904931,false);
+			guiGraphics.drawString(font, Component.translatable(AirShip.MOD_ID+".navigation_table.name").append(getMenu().getMapData().getName()), 115, 23, 0x904931,false);
+			guiGraphics.drawString(font, Component.translatable(AirShip.MOD_ID+".navigation_table.direction." + getMenu().getMapData().getDirection().name()), 115, 33, 0x904931,false);
 			guiGraphics.drawString(font, "X: " + getMenu().getMapData().getRealX(), 115, 53, 0x385fA1,false);
 			guiGraphics.drawString(font, "Z: " + getMenu().getMapData().getRealZ(), 115, 63, 0x385fA1,false);
-			guiGraphics.drawString(font, Component.translatable("navigationtable.speed").append("" + getMenu().getMapData().getSpeed()), 115, 43, 0x1B764A,false);
+			guiGraphics.drawString(font, Component.translatable(AirShip.MOD_ID+".navigation_table.speed").append("" + getMenu().getMapData().getSpeed()), 115, 43, 0x1B764A,false);
 		}
 		if (getMenu().getMapData().isHasTarget()) {
-			guiGraphics.drawString(font, Component.translatable("navigationtable.target"), 115, 83, 0x904931,false);
+			guiGraphics.drawString(font, Component.translatable(AirShip.MOD_ID+".navigation_table.target"), 115, 83, 0x904931,false);
 			guiGraphics.drawString(font, "X: " + getMenu().getMapData().getTargetX(), 115, 93, 0x385fA1,false);
 			guiGraphics.drawString(font, "Z: " + getMenu().getMapData().getTargetZ(), 115, 103, 0x385fA1,false);
 		}

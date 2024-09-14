@@ -3,6 +3,8 @@ package hu.xannosz.airship.registries;
 import hu.xannosz.airship.AirShip;
 import hu.xannosz.airship.item.CoordinatePaper;
 import hu.xannosz.airship.item.ModItems;
+import hu.xannosz.airship.shipmodels.EnderShipModel;
+import hu.xannosz.airship.shipmodels.NetherShipModel;
 import hu.xannosz.airship.shipmodels.OverworldShipModel;
 import hu.xannosz.airship.util.CodeShouldNeverReach;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,8 @@ public class ExternalRegistry {
 
 		reg.addDimension(new Dimension(0, AirShip.MOD_ID + ":ship_dimension", null, 0));
 		reg.addDimension(new Dimension(1, "minecraft:overworld", new OverworldShipModel(), 550));
+		reg.addDimension(new Dimension(2, "minecraft:nether", new NetherShipModel(), 550));
+		reg.addDimension(new Dimension(3, "minecraft:end", new EnderShipModel(), 550));
 
 		reg.addCoordinateHolder(new CoordinateHolder() {
 			@Override

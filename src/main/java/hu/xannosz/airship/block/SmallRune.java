@@ -78,6 +78,6 @@ public class SmallRune extends BaseEntityBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		return Block.box(4, 0, 4, 8, 1, 8);
+		return Block.box(4, 0, 4, 12, 1, 12);
 	}
 }

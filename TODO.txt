@@ -1,12 +1,7 @@
-commit
-
-### Alpha ###
-
 egy blockos ugró modell block blockentity
 égbolt szinkronizálás
 más dimenziók  térkép y szint a dimenzióhoz y szintek a hajókhoz
 commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval, nagy méretű hajó!
-language files
 navasztal célpont megjelenítése
 rúna hajón bellül
 

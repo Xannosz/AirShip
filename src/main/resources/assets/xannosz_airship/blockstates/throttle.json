@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "position=0": {"model": "xannosz_airship:block/throttle_0"},
+    "position=1": {"model": "xannosz_airship:block/throttle_5"},
+    "position=2": {"model": "xannosz_airship:block/throttle_10"},
+    "position=3": {"model": "xannosz_airship:block/throttle_50"},
+    "position=4": {"model": "xannosz_airship:block/throttle_100"}
+  }
+}

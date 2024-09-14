@@ -1,0 +1,23 @@
+package hu.xannosz.airship.util;
+
+public enum ButtonId {
+	WRITE_COORDINATES,
+	TOGGLE_SHIPS_DISPLAY,
+	DOWN_SCALE,
+	UP_SCALE,
+
+	LAND,
+	TOGGLE_RUNE_ENABLED,
+	NEAR,
+	PREVIOUS,
+	NEXT,
+	RUNE_1,
+	RUNE_2,
+	RUNE_3,
+	RUNE_4,
+	RUNE_5,
+	RUNE_6,
+	RUNE_7,
+	RUNE_8,
+	RUNE_9
+}

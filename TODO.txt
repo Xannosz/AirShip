@@ -1,0 +1,38 @@
+commit
+
+### Alpha ###
+
+egy blockos ugró modell block blockentity
+égbolt szinkronizálás
+más dimenziók  térkép y szint a dimenzióhoz y szintek a hajókhoz
+commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval, nagy méretű hajó!
+language files
+navasztal célpont megjelenítése
+rúna hajón bellül
+
+### Beta ###
+
+óra szinkronizálás
+referencia chunk betöltése
+töltő képernyő elrejtés
+cc interface
+spyglass
+tölcsér a crystal holdernek
+registerek inmutable visszatérése
+navasztal hajók mutatása
+rúna talajonlévő más rúnák
+
+### Release ###
+
+finom fordulás
+compass wobbling
+pontos block hitbox
+rúna tekerő gombok elrejtése, ha nem kell
+menetszél + hang
+rúna más hajón lévő rúnák
+rúna közeli rúnák
+item modellek a blokokhoz
+
+### Graphical update ###
+
+nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem

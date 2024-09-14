@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "position=0": {"model": "xannosz_airship:block/compass_0"},
+    "position=1": {"model": "xannosz_airship:block/compass_1"},
+    "position=2": {"model": "xannosz_airship:block/compass_2"},
+    "position=3": {"model": "xannosz_airship:block/compass_3"},
+    "position=4": {"model": "xannosz_airship:block/compass_4"},
+    "position=5": {"model": "xannosz_airship:block/compass_5"},
+    "position=6": {"model": "xannosz_airship:block/compass_6"},
+    "position=7": {"model": "xannosz_airship:block/compass_7"},
+    "position=8": {"model": "xannosz_airship:block/compass_8"},
+    "position=9": {"model": "xannosz_airship:block/compass_9"},
+    "position=10": {"model": "xannosz_airship:block/compass_10"},
+    "position=11": {"model": "xannosz_airship:block/compass_11"},
+    "position=12": {"model": "xannosz_airship:block/compass_12"},
+    "position=13": {"model": "xannosz_airship:block/compass_13"},
+    "position=14": {"model": "xannosz_airship:block/compass_14"},
+    "position=15": {"model": "xannosz_airship:block/compass_15"}
+  }
+}

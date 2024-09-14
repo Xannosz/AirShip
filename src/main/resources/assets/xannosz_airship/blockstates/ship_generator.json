@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "state=false": {"model": "xannosz_airship:block/ship_generator"},
+    "state=true": {"model": "xannosz_airship:block/ship_generator_done"}
+  }
+}

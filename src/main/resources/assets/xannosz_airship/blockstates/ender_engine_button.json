@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "state=false": {"model": "xannosz_airship:block/ender_engine_button"},
+    "state=true": {"model": "xannosz_airship:block/ender_engine_button_on"}
+  }
+}

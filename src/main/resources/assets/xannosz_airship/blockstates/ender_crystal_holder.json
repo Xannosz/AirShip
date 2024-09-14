@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "crystal=0": {"model": "xannosz_airship:block/ender_crystal_holder_0"},
+    "crystal=1": {"model": "xannosz_airship:block/ender_crystal_holder_1"},
+    "crystal=2": {"model": "xannosz_airship:block/ender_crystal_holder_2"},
+    "crystal=3": {"model": "xannosz_airship:block/ender_crystal_holder_3"},
+    "crystal=4": {"model": "xannosz_airship:block/ender_crystal_holder_4"},
+    "crystal=5": {"model": "xannosz_airship:block/ender_crystal_holder_5"},
+    "crystal=6": {"model": "xannosz_airship:block/ender_crystal_holder_6"},
+    "crystal=7": {"model": "xannosz_airship:block/ender_crystal_holder_7"},
+    "crystal=8": {"model": "xannosz_airship:block/ender_crystal_holder_8"},
+    "crystal=9": {"model": "xannosz_airship:block/ender_crystal_holder_9"},
+    "crystal=10": {"model": "xannosz_airship:block/ender_crystal_holder_10"},
+    "crystal=11": {"model": "xannosz_airship:block/ender_crystal_holder_11"},
+    "crystal=12": {"model": "xannosz_airship:block/ender_crystal_holder_12"},
+    "crystal=13": {"model": "xannosz_airship:block/ender_crystal_holder_13"},
+    "crystal=14": {"model": "xannosz_airship:block/ender_crystal_holder_14"},
+    "crystal=15": {"model": "xannosz_airship:block/ender_crystal_holder_15"},
+    "crystal=16": {"model": "xannosz_airship:block/ender_crystal_holder_16"}
+  }
+}

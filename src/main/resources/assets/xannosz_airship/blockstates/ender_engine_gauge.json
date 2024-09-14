@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "energy=0": {"model": "xannosz_airship:block/ender_engine_gauge_0"},
+    "energy=1": {"model": "xannosz_airship:block/ender_engine_gauge_1"},
+    "energy=2": {"model": "xannosz_airship:block/ender_engine_gauge_2"},
+    "energy=3": {"model": "xannosz_airship:block/ender_engine_gauge_3"},
+    "energy=4": {"model": "xannosz_airship:block/ender_engine_gauge_4"},
+    "energy=5": {"model": "xannosz_airship:block/ender_engine_gauge_5"},
+    "energy=6": {"model": "xannosz_airship:block/ender_engine_gauge_6"},
+    "energy=7": {"model": "xannosz_airship:block/ender_engine_gauge_7"},
+    "energy=8": {"model": "xannosz_airship:block/ender_engine_gauge_8"},
+    "energy=9": {"model": "xannosz_airship:block/ender_engine_gauge_9"},
+    "energy=10": {"model": "xannosz_airship:block/ender_engine_gauge_10"},
+    "energy=11": {"model": "xannosz_airship:block/ender_engine_gauge_11"}
+  }
+}

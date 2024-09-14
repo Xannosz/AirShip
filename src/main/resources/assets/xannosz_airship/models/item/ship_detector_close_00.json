@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "xannosz_airship:item/ship_detector_close_00"
+  }
+}

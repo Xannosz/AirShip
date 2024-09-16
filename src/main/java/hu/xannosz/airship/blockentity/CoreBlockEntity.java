@@ -109,6 +109,14 @@ public class CoreBlockEntity extends BlockEntity {
 		setChanged();
 	}
 
+	public void jumpOneBlock(ShipDirection direction) {
+		if (direction.equals(ShipDirection.N) || direction.equals(ShipDirection.E) ||
+				direction.equals(ShipDirection.W) || direction.equals(ShipDirection.S)) {
+			AirShipRegistry.INSTANCE.updatePosition(direction.getX(),
+					direction.getZ(), getBlockPos());
+		}
+	}
+
 	@SuppressWarnings("unused")
 	public static void tick(Level level, BlockPos pos, BlockState state, CoreBlockEntity blockEntity) {
 		blockEntity.tick();

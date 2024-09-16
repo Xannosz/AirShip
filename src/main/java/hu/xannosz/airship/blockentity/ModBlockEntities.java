@@ -77,4 +77,10 @@ public class ModBlockEntities {
 					BlockEntityType.Builder.of(
 							SmallRuneBlockEntity::new,
 							ModBlocks.SMALL_RUNE.get()).build(null));
+
+	public static final RegistryObject<BlockEntityType<OneBlockJumperBlockEntity>> ONE_BLOCK_JUMPER_BLOCK_ENTITY =
+			BLOCK_ENTITIES.register("one_block_jumper_block_entity", () ->
+					BlockEntityType.Builder.of(
+							OneBlockJumperBlockEntity::new,
+							ModBlocks.ONE_BLOCK_JUMPER.get()).build(null));
 }

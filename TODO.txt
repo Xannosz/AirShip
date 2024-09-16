@@ -1,9 +1,10 @@
-egy blockos ugró modell block blockentity
-égbolt szinkronizálás
-más dimenziók  térkép y szint a dimenzióhoz y szintek a hajókhoz
-commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval, nagy méretű hajó!
 navasztal célpont megjelenítése
 rúna hajón bellül
+
+commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval, nagy méretű hajó!
+
+égbolt szinkronizálás
+más dimenziók  térkép y szint a dimenzióhoz y szintek a hajókhoz
 
 ### Beta ###
 
@@ -20,7 +21,6 @@ rúna talajonlévő más rúnák
 ### Release ###
 
 finom fordulás
-compass wobbling
 pontos block hitbox
 rúna tekerő gombok elrejtése, ha nem kell
 menetszél + hang
@@ -31,3 +31,4 @@ item modellek a blokokhoz
 ### Graphical update ###
 
 nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem
+click hang a gombokhoz

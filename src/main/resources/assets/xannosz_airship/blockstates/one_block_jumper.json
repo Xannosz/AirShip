@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "position=0,clicked=true": {"model": "xannosz_airship:block/one_block_jumper_zmc"},
+    "position=1,clicked=true": {"model": "xannosz_airship:block/one_block_jumper_xpc"},
+    "position=2,clicked=true": {"model": "xannosz_airship:block/one_block_jumper_zpc"},
+    "position=3,clicked=true": {"model": "xannosz_airship:block/one_block_jumper_xmc"},
+    "position=0,clicked=false": {"model": "xannosz_airship:block/one_block_jumper_zmn"},
+    "position=1,clicked=false": {"model": "xannosz_airship:block/one_block_jumper_xpn"},
+    "position=2,clicked=false": {"model": "xannosz_airship:block/one_block_jumper_zpn"},
+    "position=3,clicked=false": {"model": "xannosz_airship:block/one_block_jumper_xmn"}
+  }
+}

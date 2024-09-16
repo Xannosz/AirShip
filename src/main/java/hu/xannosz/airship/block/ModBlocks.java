@@ -30,6 +30,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> YELLOW_LOOMER = registerBlock("yellow_loomer", Loomer::new);
 	public static final RegistryObject<Block> NAVIGATION_TABLE = registerBlock("navigation_table", NavigationTable::new);
 	public static final RegistryObject<Block> SMALL_RUNE = registerBlock("small_rune", SmallRune::new);
+	public static final RegistryObject<Block> ONE_BLOCK_JUMPER = registerBlock("one_block_jumper", OneBlockJumper::new);
 
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> blockCreator) {
 		RegistryObject<T> block = BLOCKS.register(name, blockCreator);

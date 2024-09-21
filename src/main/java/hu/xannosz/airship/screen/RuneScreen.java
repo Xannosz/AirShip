@@ -27,15 +27,15 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 	private int y;
 	private GraphicalButton land;
 	private GraphicalButton disable;
-	private GraphicalButton rune1;
-	private GraphicalButton rune2;
-	private GraphicalButton rune3;
-	private GraphicalButton rune4;
-	private GraphicalButton rune5;
-	private GraphicalButton rune6;
-	private GraphicalButton rune7;
-	private GraphicalButton rune8;
-	private GraphicalButton rune9;
+	private RuneButton rune1;
+	private RuneButton rune2;
+	private RuneButton rune3;
+	private RuneButton rune4;
+	private RuneButton rune5;
+	private RuneButton rune6;
+	private RuneButton rune7;
+	private RuneButton rune8;
+	private RuneButton rune9;
 
 	public RuneScreen(RuneMenu menu, Inventory inventory, Component title) {
 		super(menu, inventory, title);
@@ -103,8 +103,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.hoveredY(89)
 				.build(), TEXTURE);
 
-		rune1 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_1)
+		rune1 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 18)
 				.hitBoxY(y + 25)
@@ -115,8 +114,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune2 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_2)
+		rune2 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 18)
 				.hitBoxY(y + 45)
@@ -127,8 +125,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune3 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_3)
+		rune3 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 18)
 				.hitBoxY(y + 65)
@@ -139,8 +136,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune4 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_4)
+		rune4 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 86)
 				.hitBoxY(y + 25)
@@ -151,8 +147,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune5 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_5)
+		rune5 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 86)
 				.hitBoxY(y + 45)
@@ -163,8 +158,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune6 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_6)
+		rune6 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 86)
 				.hitBoxY(y + 65)
@@ -175,8 +169,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune7 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_7)
+		rune7 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 154)
 				.hitBoxY(y + 25)
@@ -187,8 +180,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune8 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_8)
+		rune8 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 154)
 				.hitBoxY(y + 45)
@@ -199,8 +191,7 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 				.normalX(25)
 				.normalY(108)
 				.build(), TEXTURE);
-		rune9 = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.RUNE_9)
+		rune9 = new RuneButton(ButtonConfig.builder()
 				.position(getMenu().getBlockEntity().getBlockPos())
 				.hitBoxX(x + 154)
 				.hitBoxY(y + 65)
@@ -254,14 +245,23 @@ public class RuneScreen extends AbstractContainerScreen<RuneMenu> {
 		land.visible = runeData.isLandEnabled();
 		disable.setSelected(!runeData.isEnabled());
 		rune1.visible = !runeData.getRune1().equals("");
+		rune1.setRuneId(runeData.getRune1());
 		rune2.visible = !runeData.getRune2().equals("");
+		rune2.setRuneId(runeData.getRune2());
 		rune3.visible = !runeData.getRune3().equals("");
+		rune3.setRuneId(runeData.getRune3());
 		rune4.visible = !runeData.getRune4().equals("");
+		rune4.setRuneId(runeData.getRune4());
 		rune5.visible = !runeData.getRune5().equals("");
+		rune5.setRuneId(runeData.getRune5());
 		rune6.visible = !runeData.getRune6().equals("");
+		rune6.setRuneId(runeData.getRune6());
 		rune7.visible = !runeData.getRune7().equals("");
+		rune7.setRuneId(runeData.getRune7());
 		rune8.visible = !runeData.getRune8().equals("");
+		rune8.setRuneId(runeData.getRune8());
 		rune9.visible = !runeData.getRune9().equals("");
+		rune9.setRuneId(runeData.getRune9());
 	}
 
 	@Override

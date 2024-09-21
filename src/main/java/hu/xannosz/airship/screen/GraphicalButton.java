@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class GraphicalButton extends AbstractButton {
-	private final ButtonConfig config;
+	protected final ButtonConfig config;
 	private final ResourceLocation resourceLocation;
 	@Setter
 	private boolean selected = false;

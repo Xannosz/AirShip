@@ -1,10 +1,10 @@
 navasztal célpont megjelenítése
-rúna hajón bellül
 
-commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval, nagy méretű hajó!
+commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval,
+ nagy méretű hajó, hajóba teleportálás, hajó megsemmisítés!
 
-égbolt szinkronizálás
 más dimenziók  térkép y szint a dimenzióhoz y szintek a hajókhoz
+égbolt szinkronizálás
 
 ### Beta ###
 

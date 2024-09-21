@@ -60,6 +60,11 @@ public class ModMessages {
 				.encoder(PlaySoundPacket::toBytes)
 				.consumerMainThread(PlaySoundPacket::handler)
 				.add();
+		INSTANCE.messageBuilder(RuneButtonUsage.class, id(), NetworkDirection.PLAY_TO_SERVER)
+				.decoder(RuneButtonUsage::new)
+				.encoder(RuneButtonUsage::toBytes)
+				.consumerMainThread(RuneButtonUsage::handler)
+				.add();
 	}
 
 	public static <MSG> void sendToServer(MSG message) {

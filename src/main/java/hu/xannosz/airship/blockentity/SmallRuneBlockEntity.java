@@ -29,12 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-import static hu.xannosz.airship.util.Constants.SHIP_Y_MAX;
-import static hu.xannosz.airship.util.Constants.SHIP_Y_MIN;
 import static hu.xannosz.airship.util.RuneUtil.canLandOnIt;
 import static hu.xannosz.airship.util.RuneUtil.useRune;
 import static hu.xannosz.airship.util.ShipUtils.*;
@@ -50,7 +46,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	@Setter
 	private boolean isOpened = false;
 	private int clock = 0;
-	private List<Pair<String, BlockPos>> runes = new ArrayList<>();
+	private List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
 	private BlockPos land = null;
 
 	private String id = "";
@@ -101,6 +97,15 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 		}
 	}
 
+	public void jumpToRune(String id) {
+		runes.forEach((data) -> {
+			if (data.getSecond().equals(id)) {
+				ServerLevel world = toLevel(data.getFirst().getSecond(), level);
+				useRune((ServerLevel) level, getBlockPos(), world, data.getFirst().getFirst());
+			}
+		});
+	}
+
 	@SuppressWarnings("unused")
 	public static void tick(Level level, BlockPos pos, BlockState state, SmallRuneBlockEntity blockEntity) {
 		blockEntity.tick();
@@ -120,7 +125,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 		} else {
 			if (id.isEmpty()) {
 				id = generateAlphaNumerical(10);
-				RuneRegistry.INSTANCE.registerRune(toDimensionCode(level),getBlockPos(),id);
+				RuneRegistry.INSTANCE.registerRune(toDimensionCode(level), getBlockPos(), id);
 				setChanged();
 			}
 			if (clock == 0) {
@@ -132,44 +137,69 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 
 				land = null;
 				runes = new ArrayList<>();
-				//runes.addAll(getRunesInShip());
+				runes.addAll(getRunesInShip());
 				//runes.addAll(getRunesInOtherShip());
 				runes.addAll(getRunesInRealWorld());
+
+				int runeStart = 0;
+				if (runes.size() > runeStart) {
+					runeData.setRune1(runes.get(runeStart).getSecond());
+				}
+				if (runes.size() > runeStart + 1) {
+					runeData.setRune2(runes.get(runeStart + 1).getSecond());
+				}
+				if (runes.size() > runeStart + 2) {
+					runeData.setRune3(runes.get(runeStart + 2).getSecond());
+				}
+				if (runes.size() > runeStart + 3) {
+					runeData.setRune4(runes.get(runeStart + 3).getSecond());
+				}
+				if (runes.size() > runeStart + 4) {
+					runeData.setRune5(runes.get(runeStart + 4).getSecond());
+				}
+				if (runes.size() > runeStart + 5) {
+					runeData.setRune6(runes.get(runeStart + 5).getSecond());
+				}
+				if (runes.size() > runeStart + 6) {
+					runeData.setRune7(runes.get(runeStart + 6).getSecond());
+				}
+				if (runes.size() > runeStart + 7) {
+					runeData.setRune8(runes.get(runeStart + 7).getSecond());
+				}
+				if (runes.size() > runeStart + 8) {
+					runeData.setRune9(runes.get(runeStart + 8).getSecond());
+				}
 			}
 			clock--;
 		}
 	}
 
-	private List<Pair<String, BlockPos>> getRunesInShip() {
-		final List<Pair<String, BlockPos>> runes = new ArrayList<>();
+	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInShip() {
+		final List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
 
 		if (!isInShipDimension(level)) {
 			return runes;
 		}
 
 		final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
-
-		for (int x = shipData.getSWCore().getX() - shipData.getRadius();
-			 x < shipData.getSWCore().getX() + shipData.getRadius(); x++) {
-			for (int y = SHIP_Y_MIN; y < SHIP_Y_MAX; y++) {
-				for (int z = shipData.getSWCore().getZ() - shipData.getRadius();
-					 z < shipData.getSWCore().getZ() + shipData.getRadius(); z++) {
-					if (level.getBlockEntity(new BlockPos(x, y, z)) instanceof SmallRuneBlockEntity smallRuneBlockEntity) {
-						runes.add(new Pair<>(smallRuneBlockEntity.id, new BlockPos(x, y, z)));
+		RuneRegistry.INSTANCE.searchForRunes(
+				0, shipData.getSWCore(), shipData.getRadius(), 1000).forEach(
+				(blockPos, runeId) -> {
+					if (!runeId.equals(id)) {
+						runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId));
 					}
 				}
-			}
-		}
+		);
 
 		return runes;
 	}
 
-	private List<Pair<String, BlockPos>> getRunesInOtherShip() {
-		return new ArrayList<>();
+	private Map<BlockPos, String> getRunesInOtherShip() {
+		return new HashMap<>();
 	}
 
-	private List<Pair<String, BlockPos>> getRunesInRealWorld() {
-		List<Pair<String, BlockPos>> runes = new ArrayList<>();
+	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInRealWorld() {
+		final List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
 
 		ServerLevel world;
 		BlockPos core = null;

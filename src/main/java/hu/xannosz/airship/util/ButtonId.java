@@ -10,14 +10,5 @@ public enum ButtonId {
 	TOGGLE_RUNE_ENABLED,
 	NEAR,
 	PREVIOUS,
-	NEXT,
-	RUNE_1,
-	RUNE_2,
-	RUNE_3,
-	RUNE_4,
-	RUNE_5,
-	RUNE_6,
-	RUNE_7,
-	RUNE_8,
-	RUNE_9
+	NEXT
 }

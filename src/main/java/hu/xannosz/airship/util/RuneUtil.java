@@ -19,10 +19,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static hu.xannosz.airship.util.ShipUtils.toDimensionCode;
 
@@ -30,11 +27,29 @@ import static hu.xannosz.airship.util.ShipUtils.toDimensionCode;
 @UtilityClass
 public class RuneUtil {
 	public static boolean canLandOnIt(BlockPos pos, ServerLevel level) {
-		if (level.getBlockState(pos.above()).getBlock().equals(Blocks.AIR) &&
+		if (!level.getBlockState(pos).getBlock().equals(Blocks.AIR) &&
+				level.getBlockState(pos.above()).getBlock().equals(Blocks.AIR) &&
 				level.getBlockState(pos.above(2)).getBlock().equals(Blocks.AIR)) {
 			return true;
 		}
 		return false;
+	}
+
+	public static BlockPos searchForSafeLandPosition(BlockPos pos, ServerLevel level, int radius, int yRadius){
+		List<BlockPos> lands = new ArrayList<>();
+		for (int x = pos.getX() - radius; x < pos.getX() + radius; x++) {
+			for (int y = pos.getY() - yRadius; y < pos.getY() + yRadius; y++) {
+				for (int z = pos.getZ() - radius; z < pos.getZ() + radius; z++) {
+					if (canLandOnIt(new BlockPos(x, y, z), level)) {
+						lands.add(new BlockPos(x, y, z));
+					}
+				}
+			}
+		}
+		if (lands.size() > 0) {
+			return lands.get(new Random().nextInt(lands.size()));
+		}
+		return null;
 	}
 
 	public static Map<BlockPos, String> filterRunes(Map<BlockPos, String> runes, ServerLevel level) {

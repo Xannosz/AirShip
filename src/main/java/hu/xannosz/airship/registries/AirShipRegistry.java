@@ -12,18 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static hu.xannosz.airship.util.Config.DEFAULT_SHIP_RADIUS;
 import static hu.xannosz.airship.util.Config.GENERATION_PERTURBATION;
 import static hu.xannosz.airship.util.Constants.*;
-import static hu.xannosz.airship.util.ShipUtils.toDimensionCode;
+import static hu.xannosz.airship.util.ShipUtils.*;
 
 @Slf4j
 public class AirShipRegistry extends SavedData {
 
 	public static AirShipRegistry INSTANCE = null;
 
+	public static final int SHIP_CORE_Y_POSITION = 150;
 	private static final int BORDER_SIZE = 1000;
-	private static final int SHIP_CORE_Y_POSITION = 150;
 
 	private final List<ShipData> ships = new ArrayList<>();
 	private double spiralEnd = 0;
@@ -34,7 +33,7 @@ public class AirShipRegistry extends SavedData {
 		ships.add(new ShipData(
 				generationPosition.getX() + new Random().nextInt(-GENERATION_PERTURBATION, GENERATION_PERTURBATION),
 				generationPosition.getZ() + new Random().nextInt(-GENERATION_PERTURBATION, GENERATION_PERTURBATION),
-				toDimensionCode(dimension), corePosition, radius));
+				toDimensionCode(dimension), corePosition, radius, generateLetters(3) + "-" + generateDigits(2)));
 		setDirty();
 		return corePosition;
 	}
@@ -71,7 +70,16 @@ public class AirShipRegistry extends SavedData {
 		setDirty();
 	}
 
+	public void updateName(String name, BlockPos block) {
+		ShipData shipData = isInShip(block, 0);
+		shipData.setName(name);
+		setDirty();
+	}
+
 	public void updateDimension(double x, double z, int dim, BlockPos block) {
+		if (dim == 0) {
+			return;
+		}
 		ShipData shipData = isInShip(block, 0);
 		shipData.updateDimension(x, z, dim);
 		setDirty();
@@ -86,6 +94,16 @@ public class AirShipRegistry extends SavedData {
 		return null;
 	}
 
+	public List<ShipData> getShipsByName(String name) {
+		List<ShipData> result = new ArrayList<>();
+		for (ShipData data : ships) {
+			if (data.getName().contains(name)) {
+				result.add(data);
+			}
+		}
+		return result;
+	}
+
 	@Override
 	public @NotNull CompoundTag save(@NotNull CompoundTag tag) {
 		ListTag shipList = new ListTag();
@@ -98,6 +116,7 @@ public class AirShipRegistry extends SavedData {
 			itemTag.putInt("sWCore.y", shipData.getSWCore().getY());
 			itemTag.putInt("sWCore.z", shipData.getSWCore().getZ());
 			itemTag.putInt("radius", shipData.getRadius());
+			itemTag.putString("name", shipData.getName());
 			shipList.add(itemTag);
 		}
 		tag.put("ships", shipList);
@@ -126,6 +145,7 @@ public class AirShipRegistry extends SavedData {
 					sTag.getInt("sWCore.y"),
 					sTag.getInt("sWCore.z")));
 			shipData.setRadius(sTag.getInt("radius"));
+			shipData.setName(sTag.getString("name"));
 			registry.ships.add(shipData);
 		}
 		registry.spiralEnd = tag.getDouble("spiralEnd");
@@ -137,7 +157,7 @@ public class AirShipRegistry extends SavedData {
 			if (block.getY() > SHIP_Y_MAX || block.getY() < SHIP_Y_MIN) {
 				return false;
 			}
-			return inRadius(block, shipData.getSWCore().getX(), shipData.getSWCore().getZ(), DEFAULT_SHIP_RADIUS);
+			return inRadius(block, shipData.getSWCore().getX(), shipData.getSWCore().getZ(), shipData.getRadius());
 		}
 		if (dim != shipData.getDimensionCode()) {
 			return false;
@@ -146,11 +166,11 @@ public class AirShipRegistry extends SavedData {
 	}
 
 	private boolean isInShipBorder(BlockPos block, ShipData shipData) {
-		if (inRadius(block, shipData.getSWCore().getX(), shipData.getSWCore().getZ(), DEFAULT_SHIP_RADIUS)) {
+		if (inRadius(block, shipData.getSWCore().getX(), shipData.getSWCore().getZ(), shipData.getRadius())) {
 			return block.getY() > SHIP_Y_MAX || block.getY() < SHIP_Y_MIN;
 		}
 		return inRadius(block, shipData.getSWCore().getX(), shipData.getSWCore().getZ(),
-				DEFAULT_SHIP_RADIUS + BORDER_SIZE);
+				shipData.getRadius() + BORDER_SIZE);
 	}
 
 	private BlockPos getFreePosition(int radius) {

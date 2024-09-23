@@ -29,9 +29,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static hu.xannosz.airship.util.RuneUtil.canLandOnIt;
+import static hu.xannosz.airship.util.RuneUtil.searchForSafeLandPosition;
 import static hu.xannosz.airship.util.RuneUtil.useRune;
 import static hu.xannosz.airship.util.ShipUtils.*;
 
@@ -220,19 +223,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 			if (core == null) {
 				return runes;
 			} else {
-				List<BlockPos> lands = new ArrayList<>(); //TODO calculate in time
-				for (int x = core.getX() - 8; x < core.getX() + 8; x++) {
-					for (int y = core.getY() - 4; y < core.getY() + 4; y++) {
-						for (int z = core.getZ() - 8; z < core.getZ() + 8; z++) {
-							if (canLandOnIt(new BlockPos(x, y, z), world)) {
-								lands.add(new BlockPos(x, y, z));
-							}
-						}
-					}
-				}
-				if (lands.size() > 0) {
-					land = lands.get(new Random().nextInt(lands.size()));
-				}
+				land = searchForSafeLandPosition(core, world, 8, 4);//TODO calculate in time
 			}
 		}
 

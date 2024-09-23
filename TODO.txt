@@ -1,9 +1,6 @@
 navasztal célpont megjelenítése
 
-commandok: dimenzó ugrás, hajó keresés és compass gyártás, pontra ugrás hajóval,
- nagy méretű hajó, hajóba teleportálás, hajó megsemmisítés!
-
-más dimenziók  térkép y szint a dimenzióhoz y szintek a hajókhoz
+más dimenziók     térkép y szint a dimenzióhoz    y szintek a hajókhoz
 égbolt szinkronizálás
 
 ### Beta ###

@@ -40,8 +40,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 import static hu.xannosz.airship.util.ShipUtils.*;
 
 @Slf4j
@@ -235,6 +233,7 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 
 					mapData.setRealX((int) Math.round(shipData.getRWCoreX()));
 					mapData.setRealZ((int) Math.round(shipData.getRWCoreZ()));
+					mapData.setName(shipData.getName());
 
 					x = (((int) Math.round(shipData.getRWCoreX())) / scale) * scale;
 					z = (((int) Math.round(shipData.getRWCoreZ())) / scale) * scale;
@@ -243,7 +242,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 
 					BlockEntity entity = level.getBlockEntity(shipData.getSWCore());
 					if (entity instanceof CoreBlockEntity coreBlockEntity) {
-						mapData.setName(coreBlockEntity.getName());
 						mapData.setDirection(coreBlockEntity.getDirection());
 						mapData.setSpeed(coreBlockEntity.getSpeed());
 					}

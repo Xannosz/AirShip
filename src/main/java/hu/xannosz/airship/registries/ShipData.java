@@ -14,6 +14,7 @@ public class ShipData {
 	private int dimensionCode;
 	private BlockPos sWCore;
 	private int radius;
+	private String name;
 
 	public void updateCoordinates(double x, double z) {
 		rWCoreX += x;

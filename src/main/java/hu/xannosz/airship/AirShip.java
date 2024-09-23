@@ -4,6 +4,7 @@ import hu.xannosz.airship.block.ModBlocks;
 import hu.xannosz.airship.blockentity.ModBlockEntities;
 import hu.xannosz.airship.client.ShipDetectorFunction;
 import hu.xannosz.airship.client.ShipDimensionEffect;
+import hu.xannosz.airship.command.AirshipCommand;
 import hu.xannosz.airship.item.ModItems;
 import hu.xannosz.airship.network.ModMessages;
 import hu.xannosz.airship.registries.AirShipRegistry;
@@ -18,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,6 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.server.command.ConfigCommand;
 
 @Mod(AirShip.MOD_ID)
 public class AirShip {
@@ -83,6 +86,12 @@ public class AirShip {
 		public static void onServerStartingEvent(ServerStartingEvent event) {
 			event.getServer().overworld().getDataStorage().computeIfAbsent(AirShipRegistry::load, AirShipRegistry::create, "airship_registry");
 			event.getServer().overworld().getDataStorage().computeIfAbsent(RuneRegistry::load, RuneRegistry::create, "rune_registry");
+		}
+
+		@SubscribeEvent
+		public static void onCommandsRegister(RegisterCommandsEvent event) {
+			new AirshipCommand(event.getDispatcher());
+			ConfigCommand.register(event.getDispatcher());
 		}
 	}
 }

@@ -3,7 +3,6 @@ package hu.xannosz.airship.blockentity;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.util.ShipDirection;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 import static hu.xannosz.airship.util.Config.*;
-import static hu.xannosz.airship.util.ShipUtils.*;
+import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 @Slf4j
 @Getter
@@ -23,8 +22,6 @@ public class CoreBlockEntity extends BlockEntity {
 
 	private int speed = 0;
 	private ShipDirection direction = ShipDirection.N;
-	@Setter
-	private String name = generateName();
 	@Getter
 	private int enderEnergy = 0;
 	@Getter
@@ -39,7 +36,6 @@ public class CoreBlockEntity extends BlockEntity {
 	protected void saveAdditional(@NotNull CompoundTag tag) {
 		tag.putInt("core.speed", speed);
 		tag.putInt("core.direction", direction.getCode());
-		tag.putString("core.name", name);
 		tag.putInt("core.enderEnergy", enderEnergy);
 		tag.putInt("core.necessaryEnderEnergy", necessaryEnderEnergy);
 		tag.putBoolean("core.isEnderEngineOn", isEnderEngineOn);
@@ -51,7 +47,6 @@ public class CoreBlockEntity extends BlockEntity {
 		super.load(nbt);
 		speed = nbt.getInt("core.speed");
 		direction = ShipDirection.fromCode(nbt.getInt("core.direction"));
-		name = nbt.getString("core.name");
 		enderEnergy = nbt.getInt("core.enderEnergy");
 		necessaryEnderEnergy = nbt.getInt("core.necessaryEnderEnergy");
 		isEnderEngineOn = nbt.getBoolean("core.isEnderEngineOn");
@@ -146,9 +141,5 @@ public class CoreBlockEntity extends BlockEntity {
 			AirShipRegistry.INSTANCE.updatePosition((direction.getX() * speed) / 20,
 					(direction.getZ() * speed) / 20, getBlockPos());
 		}
-	}
-
-	private String generateName() {
-		return generateLetters(3) + "-" + generateDigits(2);
 	}
 }

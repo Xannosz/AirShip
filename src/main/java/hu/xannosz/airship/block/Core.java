@@ -3,6 +3,7 @@ package hu.xannosz.airship.block;
 import hu.xannosz.airship.blockentity.CoreBlockEntity;
 import hu.xannosz.airship.blockentity.ModBlockEntities;
 import hu.xannosz.airship.item.ModItems;
+import hu.xannosz.airship.registries.AirShipRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.InteractionHand;
@@ -29,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static hu.xannosz.airship.item.ShipDetector.CORE_POSITION_TAG;
-import static hu.xannosz.airship.item.ShipDetector.NAME_TAG;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class Core extends BaseEntityBlock {
@@ -57,23 +57,12 @@ public class Core extends BaseEntityBlock {
 			if (player.getItemInHand(hand).getItem().equals(Items.COMPASS)) {
 				ItemStack detector = new ItemStack(ModItems.SHIP_DETECTOR.get(), 1);
 				detector.getOrCreateTag().put(CORE_POSITION_TAG, NbtUtils.writeBlockPos(pos));
-				BlockEntity entity = level.getBlockEntity(pos);
-				if (entity instanceof CoreBlockEntity coreBlockEntity) {
-					detector.getOrCreateTag().putString(NAME_TAG, coreBlockEntity.getName());
-				} else {
-					throw new IllegalStateException("Our Container provider is missing!");
-				}
 				player.setItemInHand(hand, detector);
 			}
 			if (player.getItemInHand(hand).getItem().equals(Items.NAME_TAG) &&
 					player.getItemInHand(hand).hasCustomHoverName() &&
 					!player.getItemInHand(hand).getHoverName().getString().equals("")) {
-				BlockEntity entity = level.getBlockEntity(pos);
-				if (entity instanceof CoreBlockEntity coreBlockEntity) {
-					coreBlockEntity.setName(player.getItemInHand(hand).getHoverName().getString());
-				} else {
-					throw new IllegalStateException("Our Container provider is missing!");
-				}
+				AirShipRegistry.INSTANCE.updateName(player.getItemInHand(hand).getHoverName().getString(), pos);
 			}
 		}
 

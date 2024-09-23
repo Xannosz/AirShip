@@ -1,6 +1,5 @@
 navasztal célpont megjelenítése
 
-más dimenziók     térkép y szint a dimenzióhoz    y szintek a hajókhoz
 égbolt szinkronizálás
 
 ### Beta ###

@@ -29,8 +29,8 @@ public class ExternalRegistry {
 
 		reg.addDimension(new Dimension(0, AirShip.MOD_ID + ":ship_dimension", null, 0));
 		reg.addDimension(new Dimension(1, "minecraft:overworld", new OverworldShipModel(), 550));
-		reg.addDimension(new Dimension(2, "minecraft:nether", new NetherShipModel(), 550));
-		reg.addDimension(new Dimension(3, "minecraft:end", new EnderShipModel(), 550));
+		reg.addDimension(new Dimension(2, "minecraft:the_nether", new NetherShipModel(), 450));
+		reg.addDimension(new Dimension(3, "minecraft:the_end", new EnderShipModel(), 450));
 
 		reg.addCoordinateHolder(new CoordinateHolder() {
 			@Override

@@ -1,17 +1,9 @@
-navasztal célpont megjelenítése
-
-égbolt szinkronizálás
-
-### Beta ###
-
 óra szinkronizálás
-referencia chunk betöltése
-töltő képernyő elrejtés
 cc interface
 spyglass
 tölcsér a crystal holdernek
 registerek inmutable visszatérése
-navasztal hajók mutatása
+navasztal célpont megjelenítése
 rúna talajonlévő más rúnák
 
 ### Release ###
@@ -26,5 +18,7 @@ item modellek a blokokhoz
 
 ### Graphical update ###
 
+navasztal hajók mutatása
+nether égbolt szinkronizálás
 nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem
 click hang a gombokhoz

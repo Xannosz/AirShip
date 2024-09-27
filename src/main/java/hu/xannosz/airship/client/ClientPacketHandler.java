@@ -40,4 +40,8 @@ public class ClientPacketHandler {
 				(double) playSoundPacket.getPosition().getZ() + 0.5D,
 				SoundEvents.BEACON_DEACTIVATE, SoundSource.BLOCKS, 2F, 2F, false);
 	}
+
+	public static void handleClientInformationResponse(String dimensionName, float direction) {
+		ClientInformationContainer.setData(dimensionName, direction);
+	}
 }

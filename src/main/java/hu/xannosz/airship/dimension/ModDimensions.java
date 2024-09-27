@@ -31,11 +31,11 @@ public class ModDimensions {
 
 	public static void bootstrapType(BootstapContext<DimensionType> context) {
 		context.register(SHIP_DIMENSION_TYPE, new DimensionType(
-				OptionalLong.of(12000), // fixedTime
+				OptionalLong.empty(), // fixedTime
 				false, // hasSkylight
 				false, // hasCeiling
 				false, // ultraWarm
-				false, // natural
+				true, // natural
 				1.0, // coordinateScale
 				true, // bedWorks
 				false, // respawnAnchorWorks

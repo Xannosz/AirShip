@@ -65,6 +65,16 @@ public class ModMessages {
 				.encoder(RuneButtonUsage::toBytes)
 				.consumerMainThread(RuneButtonUsage::handler)
 				.add();
+		INSTANCE.messageBuilder(ClientInformationResponse.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+				.decoder(ClientInformationResponse::new)
+				.encoder(ClientInformationResponse::toBytes)
+				.consumerMainThread(ClientInformationResponse::handler)
+				.add();
+		INSTANCE.messageBuilder(GetClientInformation.class, id(), NetworkDirection.PLAY_TO_SERVER)
+				.decoder(GetClientInformation::new)
+				.encoder(GetClientInformation::toBytes)
+				.consumerMainThread(GetClientInformation::handler)
+				.add();
 	}
 
 	public static <MSG> void sendToServer(MSG message) {

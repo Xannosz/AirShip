@@ -1,10 +1,8 @@
-óra szinkronizálás
-cc interface
-spyglass
 tölcsér a crystal holdernek
-registerek inmutable visszatérése
 navasztal célpont megjelenítése
 rúna talajonlévő más rúnák
+rúna más hajón lévő rúnák
+rúna közeli rúnák
 
 ### Release ###
 
@@ -12,13 +10,18 @@ finom fordulás
 pontos block hitbox
 rúna tekerő gombok elrejtése, ha nem kell
 menetszél + hang
-rúna más hajón lévő rúnák
-rúna közeli rúnák
 item modellek a blokokhoz
+click hang a gombokhoz
+nether égbolt szinkronizálás
 
 ### Graphical update ###
 
+cc interface
+spyglass
 navasztal hajók mutatása
-nether égbolt szinkronizálás
+
+### Fancy update ###
+
 nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem
-click hang a gombokhoz
+
+### Extension update ###

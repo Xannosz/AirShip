@@ -14,6 +14,7 @@ import java.util.Random;
 
 import static hu.xannosz.airship.util.Config.GENERATION_PERTURBATION;
 import static hu.xannosz.airship.util.Constants.*;
+import static hu.xannosz.airship.util.CopyUtil.copy;
 import static hu.xannosz.airship.util.ShipUtils.*;
 
 @Slf4j
@@ -35,7 +36,7 @@ public class AirShipRegistry extends SavedData {
 				generationPosition.getZ() + new Random().nextInt(-GENERATION_PERTURBATION, GENERATION_PERTURBATION),
 				toDimensionCode(dimension), corePosition, radius, generateLetters(3) + "-" + generateDigits(2)));
 		setDirty();
-		return corePosition;
+		return copy(corePosition);
 	}
 
 	public ShipData isInShip(BlockPos block, int dim) {
@@ -48,7 +49,7 @@ public class AirShipRegistry extends SavedData {
 		}
 		for (ShipData ship : ships) {
 			if (isInShip(block, dim, ship)) {
-				return ship;
+				return copy(ship);
 			}
 		}
 		return null;
@@ -58,7 +59,7 @@ public class AirShipRegistry extends SavedData {
 		List<ShipData> result = new ArrayList<>();
 		for (ShipData data : ships) {
 			if (data.getDimensionCode() == dim && inRadius(block, (int) data.getRWCoreX(), (int) data.getRWCoreZ(), radius)) {
-				result.add(data);
+				result.add(copy(data));
 			}
 		}
 		return result;
@@ -88,7 +89,7 @@ public class AirShipRegistry extends SavedData {
 	public ShipData isInShipBorder(BlockPos block) {
 		for (ShipData ship : ships) {
 			if (isInShipBorder(block, ship)) {
-				return ship;
+				return copy(ship);
 			}
 		}
 		return null;
@@ -98,7 +99,7 @@ public class AirShipRegistry extends SavedData {
 		List<ShipData> result = new ArrayList<>();
 		for (ShipData data : ships) {
 			if (data.getName().contains(name)) {
-				result.add(data);
+				result.add(copy(data));
 			}
 		}
 		return result;

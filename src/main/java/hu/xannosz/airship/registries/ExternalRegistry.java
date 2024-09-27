@@ -17,6 +17,8 @@ import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static hu.xannosz.airship.util.CopyUtil.copy;
+
 @Slf4j
 public class ExternalRegistry {
 	public static ExternalRegistry INSTANCE = create();
@@ -94,7 +96,7 @@ public class ExternalRegistry {
 	public Dimension getDimension(int dimensionCode) {
 		for (Dimension dim : dimensions) {
 			if (dim.key() == dimensionCode) {
-				return dim;
+				return copy(dim);
 			}
 		}
 		throw new CodeShouldNeverReach();
@@ -112,7 +114,7 @@ public class ExternalRegistry {
 	public Coordinate getCoordinate(ItemStack stack, ServerLevel level) {
 		for (CoordinateHolder coordinateHolder : coordinateHolders) {
 			if (coordinateHolder.isValidItem(stack)) {
-				return coordinateHolder.getCoordinate(stack, level);
+				return copy(coordinateHolder.getCoordinate(stack, level));
 			}
 		}
 		return null;

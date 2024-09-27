@@ -37,13 +37,13 @@ public class ShipDimensionEffect extends DimensionSpecialEffects {
 	}
 
 	@Override
-	public boolean renderClouds(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, double camX, double camY, double camZ, Matrix4f projectionMatrix) {
+	public boolean renderClouds(@NotNull ClientLevel level, int ticks, float partialTick, @NotNull PoseStack poseStack, double camX, double camY, double camZ, @NotNull Matrix4f projectionMatrix) {
 		return true;
 	}
 
 	@Override
-	public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack,
-							 Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+	public boolean renderSky(@NotNull ClientLevel level, int ticks, float partialTick, @NotNull PoseStack poseStack,
+							 @NotNull Camera camera, @NotNull Matrix4f projectionMatrix, boolean isFoggy, @NotNull Runnable setupFog) {
 		firstRun = !firstRun;
 		if (firstRun) {
 			return false;
@@ -65,7 +65,7 @@ public class ShipDimensionEffect extends DimensionSpecialEffects {
 
 
 	@Override
-	public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
+	public boolean renderSnowAndRain(@NotNull ClientLevel level, int ticks, float partialTick, @NotNull LightTexture lightTexture, double camX, double camY, double camZ) {
 		return true;
 	}
 
@@ -80,7 +80,7 @@ public class ShipDimensionEffect extends DimensionSpecialEffects {
 	}
 
 	@Override
-	public DimensionSpecialEffects.SkyType skyType() {
+	public @NotNull DimensionSpecialEffects.SkyType skyType() {
 		return getEffect().skyType();
 	}
 
@@ -95,7 +95,7 @@ public class ShipDimensionEffect extends DimensionSpecialEffects {
 	}
 
 	@Override
-	public void adjustLightmapColors(ClientLevel level, float partialTicks, float skyDarken, float skyLight, float blockLight, int pixelX, int pixelY, Vector3f colors) {
+	public void adjustLightmapColors(@NotNull ClientLevel level, float partialTicks, float skyDarken, float skyLight, float blockLight, int pixelX, int pixelY, @NotNull Vector3f colors) {
 		getEffect().adjustLightmapColors(level, partialTicks, skyDarken, skyLight, blockLight, pixelX, pixelY, colors);
 	}
 

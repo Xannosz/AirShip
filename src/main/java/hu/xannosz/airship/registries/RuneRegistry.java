@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static hu.xannosz.airship.util.CopyUtil.copy;
+
 public class RuneRegistry extends SavedData {
 	public static RuneRegistry INSTANCE = null;
 
@@ -34,7 +36,7 @@ public class RuneRegistry extends SavedData {
 				if (runeData.position().getX() > position.getX() - radius && runeData.position().getX() < position.getX() + radius) {
 					if (runeData.position().getZ() > position.getZ() - radius && runeData.position().getZ() < position.getZ() + radius) {
 						if (runeData.position().getY() > position.getY() - yRadius && runeData.position().getY() < position.getY() + yRadius) {
-							result.put(runeData.position(), runeData.id());
+							result.put(copy(runeData.position()), runeData.id());
 						}
 					}
 				}

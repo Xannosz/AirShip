@@ -1,19 +1,20 @@
-finom fordulás
-menetszél + hang
-item modellek a blokokhoz
 nether égbolt szinkronizálás
+recipes
 
 ### Rune update ###
 rúna más hajón lévő rúnák
 rúna közeli rúnák
 rúna tekerő gombok elrejtése, ha nem kell
+rúna és tp érkezés derékig betonba
+rúna kő kopjon
 
 ### Fancy update ###
 spyglass
+menetszél + hang
+hiperugrás hang
 navasztal célpont megjelenítése
 navasztal hajók mutatása
 navasztal térkép y szint
-remove generadet source
 
 ### Extension update ###
 cc interface (hajó radar, talaj radar)

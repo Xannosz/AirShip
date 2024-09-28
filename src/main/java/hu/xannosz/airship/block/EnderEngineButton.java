@@ -85,6 +85,12 @@ public class EnderEngineButton extends BaseEntityBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		return Shapes.block();
+		if (blockState.getValue(STATE)) {
+			return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+					Block.box(6, 1, 6, 10, 3, 10));
+		} else {
+			return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+					Block.box(6, 1, 6, 10, 5, 10));
+		}
 	}
 }

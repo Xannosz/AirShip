@@ -4,12 +4,12 @@ rúna közeli rúnák
 ### Release ###
 
 finom fordulás
-pontos block hitbox
 rúna tekerő gombok elrejtése, ha nem kell
 menetszél + hang
 item modellek a blokokhoz
 click hang a gombokhoz
 nether égbolt szinkronizálás
+add new tab
 
 ### Graphical update ###
 
@@ -24,4 +24,4 @@ remove generadet source
 cc interface (hajó radar, talaj radar)
 nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem (külön mod)
 
-### Extension update ###
+### Extension update ###e

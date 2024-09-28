@@ -57,6 +57,7 @@ public class EnderEngineGauge extends BaseEntityBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		return Shapes.block();
+		return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+				Block.box(6.5, 1, 6.5, 9.5, 14, 9.5));
 	}
 }

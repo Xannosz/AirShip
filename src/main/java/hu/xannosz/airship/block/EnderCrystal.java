@@ -20,6 +20,6 @@ public class EnderCrystal extends Block {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		return Shapes.block();
+		return Block.box(7, 0, 7, 9.5, 14, 9.5);
 	}
 }

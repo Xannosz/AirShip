@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -91,6 +92,28 @@ public class Throttle extends BaseEntityBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		return Block.box(0, 0, 0, 16, 7, 16);
+		switch (blockState.getValue(POSITION)) {
+			case 0 -> {
+				return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+						Block.box(6, 1, 13, 15, 7, 15));
+			}
+			case 1 -> {
+				return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+						Block.box(6, 1, 10, 15, 7, 12));
+			}
+			case 2 -> {
+				return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+						Block.box(6, 1, 7, 15, 7, 9));
+			}
+			case 3 -> {
+				return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+						Block.box(6, 1, 4, 15, 7, 6));
+			}
+			case 4 -> {
+				return Shapes.or(Block.box(0, 0, 0, 16, 1, 16),
+						Block.box(6, 1, 1, 15, 7, 3));
+			}
+		}
+		return Block.box(0, 0, 0, 16, 1, 16);
 	}
 }

@@ -80,6 +80,6 @@ public class ShipGenerator extends BaseEntityBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		return Shapes.block();
+		return Block.box(4, 0, 4, 12, 8, 12);
 	}
 }

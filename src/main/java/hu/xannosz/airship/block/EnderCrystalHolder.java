@@ -3,6 +3,8 @@ package hu.xannosz.airship.block;
 import hu.xannosz.airship.blockentity.EnderCrystalHolderBlockEntity;
 import hu.xannosz.airship.blockentity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -63,6 +65,8 @@ public class EnderCrystalHolder extends BaseEntityBlock {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			if (player.getItemInHand(hand).getItem().equals(ModBlocks.ENDER_CRYSTAL.get().asItem())) {
 				BlockEntity entity = level.getBlockEntity(pos);
+				level.playSound((Player) null, pos, SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.BLOCKS, 0.3F, 0.6F);
+
 				if (entity instanceof EnderCrystalHolderBlockEntity enderCrystalHolderBlockEntity) {
 					if (enderCrystalHolderBlockEntity.addCrystal()) {
 						player.getItemInHand(hand).shrink(1);

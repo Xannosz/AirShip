@@ -1,27 +1,20 @@
-rúna más hajón lévő rúnák
-rúna közeli rúnák
-
-### Release ###
-
 finom fordulás
-rúna tekerő gombok elrejtése, ha nem kell
 menetszél + hang
 item modellek a blokokhoz
-click hang a gombokhoz
 nether égbolt szinkronizálás
-add new tab
 
-### Graphical update ###
+### Rune update ###
+rúna más hajón lévő rúnák
+rúna közeli rúnák
+rúna tekerő gombok elrejtése, ha nem kell
 
+### Fancy update ###
 spyglass
 navasztal célpont megjelenítése
 navasztal hajók mutatása
 navasztal térkép y szint
 remove generadet source
 
-### Fancy update ###
-
+### Extension update ###
 cc interface (hajó radar, talaj radar)
 nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem (külön mod)
-
-### Extension update ###e

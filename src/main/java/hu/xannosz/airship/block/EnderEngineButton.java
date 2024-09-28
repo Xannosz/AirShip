@@ -6,6 +6,8 @@ import hu.xannosz.airship.blockentity.ModBlockEntities;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.ShipData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -65,6 +67,7 @@ public class EnderEngineButton extends BaseEntityBlock {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			ShipData shipData = AirShipRegistry.INSTANCE.isInShip(pos, 0);
 			BlockEntity entity = level.getBlockEntity(shipData.getSWCore());
+			level.playSound((Player)null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 			if (entity instanceof CoreBlockEntity coreBlockEntity) {
 				coreBlockEntity.toggleEnderEngine();

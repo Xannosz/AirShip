@@ -16,9 +16,7 @@ import hu.xannosz.airship.util.TeleportHandler;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -35,13 +33,6 @@ public class AirShip {
 
 	public static final String MOD_ID = "xannosz_airship";
 
-	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-			event.accept(ModItems.RUNE_STONE);
-			ModItems.BLOCK_ITEMS.forEach(event::accept);
-		}
-	}
-
 	public AirShip() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -49,9 +40,9 @@ public class AirShip {
 		ModItems.ITEMS.register(bus);
 		ModBlockEntities.BLOCK_ENTITIES.register(bus);
 		ModMenus.MENUS.register(bus);
+		ModCreativeModeTab.CREATIVE_MODE_TABS.register(bus);
 
 		bus.addListener(this::commonSetup);
-		bus.addListener(this::addCreative);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {

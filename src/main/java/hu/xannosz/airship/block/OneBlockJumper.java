@@ -3,6 +3,8 @@ package hu.xannosz.airship.block;
 import hu.xannosz.airship.blockentity.ModBlockEntities;
 import hu.xannosz.airship.blockentity.OneBlockJumperBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +57,8 @@ public class OneBlockJumper extends BaseEntityBlock {
 										  @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
 		if (!level.isClientSide() || !isInShipDimension(level)) {
 			BlockEntity entity = level.getBlockEntity(pos);
+			level.playSound((Player)null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
+
 			if (entity instanceof OneBlockJumperBlockEntity oneBlockJumperBlockEntity) {
 				oneBlockJumperBlockEntity.turn();
 			} else {
@@ -70,6 +74,8 @@ public class OneBlockJumper extends BaseEntityBlock {
 	public void attack(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player) {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			BlockEntity entity = level.getBlockEntity(pos);
+			level.playSound((Player)null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
+
 			if (entity instanceof OneBlockJumperBlockEntity oneBlockJumperBlockEntity) {
 				oneBlockJumperBlockEntity.jump();
 			} else {

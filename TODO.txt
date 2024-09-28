@@ -1,6 +1,3 @@
-tölcsér a crystal holdernek
-navasztal célpont megjelenítése
-rúna talajonlévő más rúnák
 rúna más hajón lévő rúnák
 rúna közeli rúnák
 
@@ -16,12 +13,15 @@ nether égbolt szinkronizálás
 
 ### Graphical update ###
 
-cc interface
 spyglass
+navasztal célpont megjelenítése
 navasztal hajók mutatása
+navasztal térkép y szint
+remove generadet source
 
 ### Fancy update ###
 
-nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem
+cc interface (hajó radar, talaj radar)
+nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem (külön mod)
 
 ### Extension update ###

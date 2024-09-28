@@ -10,6 +10,7 @@ import hu.xannosz.airship.registries.ShipData;
 import hu.xannosz.airship.screen.RuneMenu;
 import hu.xannosz.airship.util.ButtonId;
 import hu.xannosz.airship.util.ButtonUser;
+import hu.xannosz.airship.util.Config;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,6 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	private boolean isOpened = false;
 	private int clock = 0;
 	private List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
-	private BlockPos land = null;
 
 	private String id = "";
 	@Getter
@@ -92,10 +92,24 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 			setChanged();
 		}
 		if (buttonId.equals(ButtonId.LAND)) {
-			if (land != null && isInShipDimension(level)) {
+			if (isInShipDimension(level)) {
+				BlockPos core = null;
 				final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
-				ServerLevel world = toLevel(shipData.getDimensionCode(), level);
-				useRune((ServerLevel) level, getBlockPos(), world, land);
+				final ServerLevel world = toLevel(shipData.getDimensionCode(), level);
+				for (int y = 400; y > 0; y--) {
+					BlockPos pos = new BlockPos((int) shipData.getRWCoreX(), y, (int) shipData.getRWCoreZ());
+					if (!world.getBlockState(pos).getBlock().equals(Blocks.AIR) &&
+							!world.getBlockState(pos).getBlock().equals(Blocks.VOID_AIR)) {
+						core = pos;
+						break;
+					}
+				}
+				if (core != null) {
+					BlockPos land = searchForSafeLandPosition(core, world, 8, 4);
+					if (land != null && isInShipDimension(level)) {
+						useRune((ServerLevel) level, getBlockPos(), world, land);
+					}
+				}
 			}
 		}
 	}
@@ -138,7 +152,6 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 				runeData.setEnabled(isEnabled);
 				runeData.setLandEnabled(isInShipDimension(level));
 
-				land = null;
 				runes = new ArrayList<>();
 				runes.addAll(getRunesInShip());
 				//runes.addAll(getRunesInOtherShip());
@@ -204,39 +217,25 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInRealWorld() {
 		final List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
 
-		ServerLevel world;
-		BlockPos core = null;
-		if (!isInShipDimension(level)) {
-			world = (ServerLevel) level;
-			core = getBlockPos();
-		} else {
+		BlockPos core;
+		int world;
+		if (isInShipDimension(level)) {
 			final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
-			world = toLevel(shipData.getDimensionCode(), level);
-			for (int y = 400; y > 0; y--) {
-				BlockPos pos = new BlockPos((int) shipData.getRWCoreX(), y, (int) shipData.getRWCoreZ());
-				if (!world.getBlockState(pos).getBlock().equals(Blocks.AIR) &&
-						!world.getBlockState(pos).getBlock().equals(Blocks.VOID_AIR)) {
-					core = pos;
-					break;
-				}
-			}
-			if (core == null) {
-				return runes;
-			} else {
-				land = searchForSafeLandPosition(core, world, 8, 4);//TODO calculate in time
-			}
+			world = shipData.getDimensionCode();
+			core = new BlockPos((int) shipData.getRWCoreX(), 200, (int) shipData.getRWCoreZ());
+		} else {
+			world = toDimensionCode(level);
+			core = getBlockPos();
 		}
 
-
-/*		for (int x = core.getX() - RUNE_RANGE; x < core.getX() + RUNE_RANGE; x++) {
-			for (int y = core.getY() - RUNE_RANGE; y < core.getY() + RUNE_RANGE; y++) {
-				for (int z = core.getZ() - RUNE_RANGE; z < core.getZ() + RUNE_RANGE; z++) {
-					if (world.getBlockEntity(new BlockPos(x, y, z)) instanceof RuneBlockEntity runeBlockEntity) {
-						runes.add(new Pair<>(runeBlockEntity.id, new BlockPos(x, y, z)));
+		RuneRegistry.INSTANCE.searchForRunes(
+				world, core, Config.RUNE_RANGE, 1000).forEach(
+				(blockPos, runeId) -> {
+					if (!runeId.equals(id)) {
+						runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId));
 					}
 				}
-			}
-		}*/
+		);
 
 		return runes;
 	}

@@ -42,14 +42,7 @@ public class ShipDetector extends Item {
 	@Override
 	public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
 		if (!level.isClientSide()) {
-			final Tag tag = stack.getOrCreateTag().get(ShipDetector.CORE_POSITION_TAG);
-			if (tag == null) {
-				stack.getOrCreateTag().putString(DIM_TAG, "");
-				return;
-			}
-
-			final BlockPos position = NbtUtils.readBlockPos((CompoundTag) tag);
-			final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(position, 0);
+			ShipData shipData = readShipData(stack);
 			if (shipData == null) {
 				stack.getOrCreateTag().putString(DIM_TAG, "");
 				return;
@@ -61,5 +54,15 @@ public class ShipDetector extends Item {
 			stack.getOrCreateTag().putDouble(Z_TAG, shipData.getRWCoreZ());
 			stack.getOrCreateTag().putString(NAME_TAG, shipData.getName());
 		}
+	}
+
+	public static ShipData readShipData(ItemStack stack) {
+		final Tag tag = stack.getOrCreateTag().get(ShipDetector.CORE_POSITION_TAG);
+		if (tag == null) {
+			return null;
+		}
+
+		final BlockPos position = NbtUtils.readBlockPos((CompoundTag) tag);
+		return AirShipRegistry.INSTANCE.isInShip(position, 0);
 	}
 }

@@ -3,6 +3,7 @@ package hu.xannosz.airship.registries;
 import hu.xannosz.airship.AirShip;
 import hu.xannosz.airship.item.CoordinatePaper;
 import hu.xannosz.airship.item.ModItems;
+import hu.xannosz.airship.item.ShipDetector;
 import hu.xannosz.airship.shipmodels.EnderShipModel;
 import hu.xannosz.airship.shipmodels.NetherShipModel;
 import hu.xannosz.airship.shipmodels.OverworldShipModel;
@@ -63,6 +64,22 @@ public class ExternalRegistry {
 				return new Coordinate(data.centerX, data.centerZ, data.dimension.location().toString());
 			}
 		});
+		reg.addCoordinateHolder(new CoordinateHolder() {
+			@Override
+			public boolean isValidItem(ItemStack stack) {
+				return stack.getItem().equals(ModItems.SHIP_DETECTOR.get());
+			}
+
+			@Override
+			public Coordinate getCoordinate(ItemStack stack, ServerLevel level) {
+				ShipData data = ShipDetector.readShipData(stack);
+				if (data == null) {
+					return null;
+				}
+				return new Coordinate((int) data.getRWCoreX(), (int) data.getRWCoreZ(),
+						ExternalRegistry.INSTANCE.getDimensionName(data.getDimensionCode()));
+			}
+		});
 
 		return reg;
 	}
@@ -114,7 +131,7 @@ public class ExternalRegistry {
 	public Coordinate getCoordinate(ItemStack stack, ServerLevel level) {
 		for (CoordinateHolder coordinateHolder : coordinateHolders) {
 			if (coordinateHolder.isValidItem(stack)) {
-				return copy(coordinateHolder.getCoordinate(stack, level));
+				return coordinateHolder.getCoordinate(stack, level);
 			}
 		}
 		return null;

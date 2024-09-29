@@ -31,10 +31,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import static hu.xannosz.airship.util.Constants.REAL_RADIUS;
 import static hu.xannosz.airship.util.RuneUtil.searchForSafeLandPosition;
 import static hu.xannosz.airship.util.RuneUtil.useRune;
 import static hu.xannosz.airship.util.ShipUtils.*;
@@ -154,7 +153,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 
 				runes = new ArrayList<>();
 				runes.addAll(getRunesInShip());
-				//runes.addAll(getRunesInOtherShip());
+				runes.addAll(getRunesInOtherShip());
 				runes.addAll(getRunesInRealWorld());
 
 				int runeStart = 0;
@@ -210,8 +209,17 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 		return runes;
 	}
 
-	private Map<BlockPos, String> getRunesInOtherShip() {
-		return new HashMap<>();
+	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInOtherShip() {
+		final List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
+
+		for (ShipData shipData : getNearShips()) {
+			RuneRegistry.INSTANCE.searchForRunes(
+					0, shipData.getSWCore(), shipData.getRadius(), 1000).forEach(
+					(blockPos, runeId) -> runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId))
+			);
+		}
+
+		return runes;
 	}
 
 	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInRealWorld() {
@@ -232,12 +240,25 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 				world, core, Config.RUNE_RANGE, 1000).forEach(
 				(blockPos, runeId) -> {
 					if (!runeId.equals(id)) {
-						runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId));
+						runes.add(new Pair<>(new Pair<>(blockPos, world), runeId));
 					}
 				}
 		);
 
 		return runes;
+	}
+
+	private List<ShipData> getNearShips() {
+		if (isInShipDimension(level)) {
+			final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
+			List<ShipData> result = AirShipRegistry.INSTANCE.getShipsInRadius(
+					new BlockPos((int) shipData.getRWCoreX(), 100, (int) shipData.getRWCoreZ()),
+					shipData.getDimensionCode(), REAL_RADIUS);
+			result.removeIf(s -> s.getSWCore().equals(shipData.getSWCore()));
+			return result;
+		} else {
+			return AirShipRegistry.INSTANCE.getShipsInRadius(getBlockPos(), toDimensionCode(level), REAL_RADIUS);
+		}
 	}
 
 	public void responseToServer(ServerPlayer player) {

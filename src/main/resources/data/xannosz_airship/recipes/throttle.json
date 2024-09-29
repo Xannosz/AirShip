@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " LL",
+    " II",
+    "LLL"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:spruce_planks"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:throttle"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " E ",
+    " B "
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "B": {
+      "item": "xannosz_airship:ender_engine_base"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:ender_engine_button"
+  }
+}

@@ -15,5 +15,7 @@ public class ModItems {
 	public static final RegistryObject<Item> SHIP_DETECTOR = ITEMS.register("ship_detector", ShipDetector::new);
 	public static final RegistryObject<Item> COORDINATE_PAPER = ITEMS.register("coordinate_paper", CoordinatePaper::new);
 	public static final RegistryObject<Item> RUNE_STONE = ITEMS.register("rune_stone", RuneStone::new);
+	public static final RegistryObject<Item> ENDER_ENGINE_BASE = ITEMS.register("ender_engine_base", () ->
+			new Item(new Item.Properties()));
 	public static final Set<RegistryObject<BlockItem>> BLOCK_ITEMS = new HashSet<>();
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    " C ",
+    " B "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "B": {
+      "item": "xannosz_airship:ender_engine_base"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:ender_engine_gauge"
+  }
+}

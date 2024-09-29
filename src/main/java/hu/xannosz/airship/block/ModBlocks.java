@@ -17,8 +17,8 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, AirShip.MOD_ID);
 
 	public static final RegistryObject<Block> CORE = registerBlock("core", Core::new);
-	public static final RegistryObject<Block> RUDDER = registerBlock("rudder", Rudder::new);
-	public static final RegistryObject<Block> SMALL_RUDDER = registerBlock("small_rudder", SmallRudder::new);
+	public static final RegistryObject<Block> SHIP_HELM = registerBlock("ship_helm", ShipHelm::new);
+	public static final RegistryObject<Block> SMALL_SHIP_HELM = registerBlock("small_ship_helm", SmallShipHelm::new);
 	public static final RegistryObject<Block> THROTTLE = registerBlock("throttle", Throttle::new);
 	public static final RegistryObject<Block> COMPASS = registerBlock("compass", Compass::new);
 	public static final RegistryObject<Block> SHIP_GENERATOR = registerBlock("ship_generator", ShipGenerator::new);

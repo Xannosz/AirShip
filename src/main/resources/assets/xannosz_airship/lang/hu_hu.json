@@ -2,8 +2,8 @@
   "creative_tab.xannosz_airship.airship_tab": "Léghajók",
 
   "block.xannosz_airship.core": "Hajómag",
-  "block.xannosz_airship.rudder": "Kormány",
-  "block.xannosz_airship.small_rudder": "Kis Kormány",
+  "block.xannosz_airship.ship_helm": "Kormány",
+  "block.xannosz_airship.small_ship_helm": "Kis Kormány",
   "block.xannosz_airship.throttle": "Gázkar",
   "block.xannosz_airship.compass": "Iránytű",
   "block.xannosz_airship.ship_generator": "Hajó Generátor",

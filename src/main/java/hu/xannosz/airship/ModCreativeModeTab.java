@@ -14,7 +14,7 @@ public class ModCreativeModeTab {
 			DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AirShip.MOD_ID);
 
 	public static final RegistryObject<CreativeModeTab> AIRSHIP_TAB = CREATIVE_MODE_TABS.register("airship_tab",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.RUDDER.get()))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.SHIP_HELM.get()))
 					.title(Component.translatable("creative_tab." + AirShip.MOD_ID + ".airship_tab"))
 					.displayItems((pParameters, pOutput) -> {
 						pOutput.accept(ModItems.RUNE_STONE.get());

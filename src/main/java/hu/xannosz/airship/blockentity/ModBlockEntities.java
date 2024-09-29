@@ -18,17 +18,17 @@ public class ModBlockEntities {
 							CoreBlockEntity::new,
 							ModBlocks.CORE.get()).build(null));
 
-	public static final RegistryObject<BlockEntityType<RudderBlockEntity>> RUDDER_BLOCK_ENTITY =
-			BLOCK_ENTITIES.register("rudder_block_entity", () ->
+	public static final RegistryObject<BlockEntityType<ShipHelmBlockEntity>> SHIP_HELM_BLOCK_ENTITY =
+			BLOCK_ENTITIES.register("ship_helm_block_entity", () ->
 					BlockEntityType.Builder.of(
-							RudderBlockEntity::new,
-							ModBlocks.RUDDER.get()).build(null));
+							ShipHelmBlockEntity::new,
+							ModBlocks.SHIP_HELM.get()).build(null));
 
-	public static final RegistryObject<BlockEntityType<SmallRudderBlockEntity>> SMALL_RUDDER_BLOCK_ENTITY =
-			BLOCK_ENTITIES.register("small_rudder_block_entity", () ->
+	public static final RegistryObject<BlockEntityType<SmallShipHelmBlockEntity>> SMALL_SHIP_HELM_BLOCK_ENTITY =
+			BLOCK_ENTITIES.register("small_ship_helm_block_entity", () ->
 					BlockEntityType.Builder.of(
-							SmallRudderBlockEntity::new,
-							ModBlocks.SMALL_RUDDER.get()).build(null));
+							SmallShipHelmBlockEntity::new,
+							ModBlocks.SMALL_SHIP_HELM.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<ThrottleBlockEntity>> THROTTLE_BLOCK_ENTITY =
 			BLOCK_ENTITIES.register("throttle_block_entity", () ->

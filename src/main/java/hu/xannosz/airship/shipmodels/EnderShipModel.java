@@ -56,7 +56,7 @@ public class EnderShipModel extends ShipModel {
 				.setValue(StairBlock.SHAPE, StairsShape.STRAIGHT));
 
 		blockStates.put('C', ModBlocks.COMPASS.get().defaultBlockState());
-		blockStates.put('K', ModBlocks.SMALL_RUDDER.get().defaultBlockState());
+		blockStates.put('K', ModBlocks.SMALL_SHIP_HELM.get().defaultBlockState());
 		blockStates.put('k', ModBlocks.THROTTLE.get().defaultBlockState());
 
 		pivot = new BlockPos(-5, -2, -13);

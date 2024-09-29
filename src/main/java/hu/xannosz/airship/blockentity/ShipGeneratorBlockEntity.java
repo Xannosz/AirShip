@@ -72,8 +72,12 @@ public class ShipGeneratorBlockEntity extends BlockEntity {
 
 	@SuppressWarnings("ConstantConditions")
 	private void tick() {
-		if (level.isClientSide() || isInShipDimension(level)) { //TODO break it!!!!
+		if (level.isClientSide()) {
 			return;
+		}
+
+		if (isInShipDimension(level)) {
+			level.setBlock(getBlockPos(), Blocks.AIR.defaultBlockState(), 2, 0);
 		}
 
 		if (model == null) {

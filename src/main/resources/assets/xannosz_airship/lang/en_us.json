@@ -2,8 +2,8 @@
   "creative_tab.xannosz_airship.airship_tab": "Airships",
 
   "block.xannosz_airship.core": "Core",
-  "block.xannosz_airship.rudder": "Rudder",
-  "block.xannosz_airship.small_rudder": "Small Rudder",
+  "block.xannosz_airship.ship_helm": "Ship Helm",
+  "block.xannosz_airship.small_ship_helm": "Small Ship Helm",
   "block.xannosz_airship.throttle": "Throttle",
   "block.xannosz_airship.compass": "Compass",
   "block.xannosz_airship.ship_generator": "Ship Generator",

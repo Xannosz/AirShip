@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " R ",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "xannosz_airship:throttle"
+    },
+    "R": {
+      "item": "xannosz_airship:small_ship_helm"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:one_block_jumper"
+  }
+}

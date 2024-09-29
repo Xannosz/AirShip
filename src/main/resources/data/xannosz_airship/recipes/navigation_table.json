@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " C ",
+    "LLL"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cartography_table"
+    },
+    "L": {
+      "item": "minecraft:spruce_planks"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:navigation_table"
+  }
+}

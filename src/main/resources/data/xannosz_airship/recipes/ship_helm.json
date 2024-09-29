@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SRS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "R": {
+      "item": "xannosz_airship:small_ship_helm"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:ship_helm"
+  }
+}

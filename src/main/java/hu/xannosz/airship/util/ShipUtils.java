@@ -223,11 +223,11 @@ public class ShipUtils {
 		return null;
 	}
 
-	private static BlockPos toShipCoordinates(BlockPos pos, ShipData data) {//TODO make it relative
+	private static BlockPos toShipCoordinates(BlockPos pos, ShipData data) {
 		return new BlockPos(data.getSWCore().getX(), SHIP_Y_MIN + 20, data.getSWCore().getZ());
 	}
 
-	private static BlockPos fromShipCoordinates(BlockPos pos, ShipData data, int dimCode) {//TODO make it relative
+	private static BlockPos fromShipCoordinates(BlockPos pos, ShipData data, int dimCode) {
 		final int yPosition = ExternalRegistry.INSTANCE.getDimension(dimCode).referenceY() - REAL_RADIUS - 20;
 		return new BlockPos((int) data.getRWCoreX(), yPosition, (int) data.getRWCoreZ());
 	}

@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "position=0": {"model": "xannosz_airship:block/ship_helm_0","y": 180},
+    "position=1": {"model": "xannosz_airship:block/ship_helm_1","y": 180},
+    "position=2": {"model": "xannosz_airship:block/ship_helm_2","y": 180},
+    "position=3": {"model": "xannosz_airship:block/ship_helm_3","y": 180},
+    "position=4": {"model": "xannosz_airship:block/ship_helm_4","y": 180},
+    "position=5": {"model": "xannosz_airship:block/ship_helm_5","y": 180},
+    "position=6": {"model": "xannosz_airship:block/ship_helm_6","y": 180}
+  }
+}

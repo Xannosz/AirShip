@@ -60,7 +60,7 @@ public class OverworldShipModel extends ShipModel {
 		blockStates.put('I', Blocks.OAK_FENCE.defaultBlockState());
 
 		blockStates.put('C', ModBlocks.COMPASS.get().defaultBlockState());
-		blockStates.put('K', ModBlocks.SMALL_RUDDER.get().defaultBlockState());
+		blockStates.put('K', ModBlocks.SMALL_SHIP_HELM.get().defaultBlockState());
 		blockStates.put('k', ModBlocks.THROTTLE.get().defaultBlockState());
 
 		pivot = new BlockPos(-7, -2, -15);

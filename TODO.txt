@@ -1,5 +1,5 @@
 nether égbolt szinkronizálás
-recipes
+Test
 
 ### Rune update ###
 rúna más hajón lévő rúnák
@@ -15,6 +15,9 @@ hiperugrás hang
 navasztal célpont megjelenítése
 navasztal hajók mutatása
 navasztal térkép y szint
+ship compass mint coordináta holder
+ship <-> real world relative coords
+all entity teleportation
 
 ### Extension update ###
 cc interface (hajó radar, talaj radar)

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " P ",
+    " B "
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "B": {
+      "item": "xannosz_airship:ender_engine_base"
+    }
+  },
+  "result": {
+    "item": "xannosz_airship:ender_crystal_holder"
+  }
+}

@@ -40,6 +40,14 @@ public class AirShipRegistry extends SavedData {
 	}
 
 	public ShipData isInShip(BlockPos block, int dim) {
+		ShipData data = isInShipInternal(block, dim);
+		if (data != null) {
+			return copy(data);
+		}
+		return null;
+	}
+
+	private ShipData isInShipInternal(BlockPos block, int dim) {
 		if (dim != 0) {
 			Dimension dimension = ExternalRegistry.INSTANCE.getDimension(dim);
 			if (block.getY() > dimension.referenceY() + REAL_RADIUS ||
@@ -49,7 +57,7 @@ public class AirShipRegistry extends SavedData {
 		}
 		for (ShipData ship : ships) {
 			if (isInShip(block, dim, ship)) {
-				return copy(ship);
+				return ship;
 			}
 		}
 		return null;
@@ -66,24 +74,30 @@ public class AirShipRegistry extends SavedData {
 	}
 
 	public void updatePosition(double x, double z, BlockPos block) {
-		ShipData shipData = isInShip(block, 0);
-		shipData.updateCoordinates(x, z);
-		setDirty();
+		ShipData shipData = isInShipInternal(block, 0);
+		if (shipData != null) {
+			shipData.updateCoordinates(x, z);
+			setDirty();
+		}
 	}
 
 	public void updateName(String name, BlockPos block) {
-		ShipData shipData = isInShip(block, 0);
-		shipData.setName(name);
-		setDirty();
+		ShipData shipData = isInShipInternal(block, 0);
+		if (shipData != null) {
+			shipData.setName(name);
+			setDirty();
+		}
 	}
 
 	public void updateDimension(double x, double z, int dim, BlockPos block) {
 		if (dim == 0) {
 			return;
 		}
-		ShipData shipData = isInShip(block, 0);
-		shipData.updateDimension(x, z, dim);
-		setDirty();
+		ShipData shipData = isInShipInternal(block, 0);
+		if (shipData != null) {
+			shipData.updateDimension(x, z, dim);
+			setDirty();
+		}
 	}
 
 	public ShipData isInShipBorder(BlockPos block) {

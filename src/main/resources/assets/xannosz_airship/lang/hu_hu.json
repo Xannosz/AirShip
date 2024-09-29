@@ -38,5 +38,7 @@
   "xannosz_airship.navigation_table.direction.SSE": "Irány: Dél Délkelet",
   "xannosz_airship.navigation_table.direction.ESE": "Irány: Kelet Délkelet",
   "xannosz_airship.navigation_table.direction.SSW": "Irány: Dél Délnyugat",
-  "xannosz_airship.navigation_table.direction.WSW": "Irány: Nyugat Délnyugat"
+  "xannosz_airship.navigation_table.direction.WSW": "Irány: Nyugat Délnyugat",
+
+  "text.xannosz_airship.ship_name": "Hajó neve: "
 }

@@ -1,5 +1,4 @@
 nether égbolt szinkronizálás
-Test
 
 ### Rune update ###
 rúna más hajón lévő rúnák
@@ -10,15 +9,15 @@ rúna kő kopjon
 
 ### Fancy update ###
 spyglass
-menetszél + hang
-hiperugrás hang
-navasztal célpont megjelenítése
-navasztal hajók mutatása
-navasztal térkép y szint
-ship compass mint coordináta holder
-ship <-> real world relative coords
-all entity teleportation
+speed-wind effect + sound ???
+hyper jump sound
+navTable show target
+navTable show other ships
+navTable map y level
+ship compass as coordinate holder
+ship <-> real world relative coordinates
+all entity teleportation on ship border
 
 ### Extension update ###
-cc interface (hajó radar, talaj radar)
-nagy rúna, cime jó mint cél jelölő (9 jegy?) hajó dimenzió nem (külön mod)
+cc interface (ship radar, ground radar)
+big rune, address as coordinate holder (9 sign?) not in ship dimension

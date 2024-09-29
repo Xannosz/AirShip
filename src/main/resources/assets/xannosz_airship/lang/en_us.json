@@ -38,5 +38,7 @@
   "xannosz_airship.navigation_table.direction.SSE": "Direction: South Southeast",
   "xannosz_airship.navigation_table.direction.ESE": "Direction: East Southeast",
   "xannosz_airship.navigation_table.direction.SSW": "Direction: South Southwest",
-  "xannosz_airship.navigation_table.direction.WSW": "Direction: West Southwest"
+  "xannosz_airship.navigation_table.direction.WSW": "Direction: West Southwest",
+
+  "text.xannosz_airship.ship_name": "Name of the ship: "
 }

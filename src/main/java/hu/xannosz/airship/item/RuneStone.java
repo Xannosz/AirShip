@@ -27,7 +27,7 @@ import static hu.xannosz.airship.util.ShipUtils.toLevel;
 @Slf4j
 public class RuneStone extends Item {
 	public RuneStone() {
-		super(new Item.Properties().stacksTo(1));
+		super(new Item.Properties().stacksTo(1).durability(8));
 	}
 
 	@Override
@@ -47,8 +47,10 @@ public class RuneStone extends Item {
 
 		final Map<BlockPos, String> filteredRunes = filterRunes(runes, toLevel(0, level));
 		for (BlockPos pos : filteredRunes.keySet()) {
+			ItemStack stack = player.getItemInHand(hand);
+			stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
 			useRune((ServerLevel) level, player.getOnPos(), toLevel(0, level), pos);
-			break;
+			return InteractionResultHolder.pass(stack);
 		}
 
 		return super.use(level, player, hand);

@@ -27,20 +27,25 @@ import static hu.xannosz.airship.util.ShipUtils.toDimensionCode;
 @UtilityClass
 public class RuneUtil {
 	public static boolean canLandOnIt(BlockPos pos, ServerLevel level) {
-		if (!level.getBlockState(pos).getBlock().equals(Blocks.AIR) &&
-				level.getBlockState(pos.above()).getBlock().equals(Blocks.AIR) &&
-				level.getBlockState(pos.above(2)).getBlock().equals(Blocks.AIR)) {
-			return true;
-		}
-		return false;
+		return !level.getBlockState(pos.below()).getBlock().equals(Blocks.AIR) &&
+				level.getBlockState(pos).getBlock().equals(Blocks.AIR) &&
+				level.getBlockState(pos.above()).getBlock().equals(Blocks.AIR);
 	}
 
-	public static BlockPos searchForSafeLandPosition(BlockPos pos, ServerLevel level, int radius, int yRadius){
+	public static BlockPos searchForSafeLandPosition(BlockPos pos, ServerLevel level, int radius, int yRadius) {
 		List<BlockPos> lands = new ArrayList<>();
 		for (int x = pos.getX() - radius; x < pos.getX() + radius; x++) {
 			for (int y = pos.getY() - yRadius; y < pos.getY() + yRadius; y++) {
 				for (int z = pos.getZ() - radius; z < pos.getZ() + radius; z++) {
-					if (canLandOnIt(new BlockPos(x, y, z), level)) {
+					if (canLandOnIt(new BlockPos(x - 1, y, z - 1), level) &&
+							canLandOnIt(new BlockPos(x - 1, y, z), level) &&
+							canLandOnIt(new BlockPos(x - 1, y, z + 1), level) &&
+							canLandOnIt(new BlockPos(x, y, z - 1), level) &&
+							canLandOnIt(new BlockPos(x, y, z), level) &&
+							canLandOnIt(new BlockPos(x, y, z + 1), level) &&
+							canLandOnIt(new BlockPos(x + 1, y, z - 1), level) &&
+							canLandOnIt(new BlockPos(x + 1, y, z), level) &&
+							canLandOnIt(new BlockPos(x + 1, y, z + 1), level)) {
 						lands.add(new BlockPos(x, y, z));
 					}
 				}

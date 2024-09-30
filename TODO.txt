@@ -1,4 +1,5 @@
 nether égbolt szinkronizálás
+write out EGA names
 
 ### Rune update ###
 rúna közeli rúnák

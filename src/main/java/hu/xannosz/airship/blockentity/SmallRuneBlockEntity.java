@@ -54,6 +54,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	private String id = "";
 	@Getter
 	private boolean isEnabled = true;
+	private int runeStart = 0;
 
 	public SmallRuneBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(ModBlockEntities.SMALL_RUNE_BLOCK_ENTITY.get(), blockPos, blockState);
@@ -63,6 +64,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	protected void saveAdditional(@NotNull CompoundTag tag) {
 		tag.putString("small_rune.id", id);
 		tag.putBoolean("small_rune.enabled", isEnabled);
+		tag.putInt("small_rune.runeStart", runeStart);
 		super.saveAdditional(tag);
 	}
 
@@ -71,6 +73,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 		super.load(nbt);
 		id = nbt.getString("small_rune.id");
 		isEnabled = nbt.getBoolean("small_rune.enabled");
+		runeStart = nbt.getInt("small_rune.runeStart");
 	}
 
 	@Override
@@ -88,6 +91,23 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	public void executeButtonClick(ButtonId buttonId) {
 		if (buttonId.equals(ButtonId.TOGGLE_RUNE_ENABLED)) {
 			isEnabled = !isEnabled;
+			setChanged();
+		}
+		if (buttonId.equals(ButtonId.PREVIOUS)) {
+			runeStart -= 9;
+			if (runeStart < 0) {
+				runeStart = 0;
+			}
+			setChanged();
+		}
+		if (buttonId.equals(ButtonId.NEXT)) {
+			runeStart += 9;
+			if (runeStart > runes.size()) {
+				runeStart -= 9;
+				if (runeStart < 0) {
+					runeStart = 0;
+				}
+			}
 			setChanged();
 		}
 		if (buttonId.equals(ButtonId.LAND)) {
@@ -144,6 +164,12 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 				RuneRegistry.INSTANCE.registerRune(toDimensionCode(level), getBlockPos(), id);
 				setChanged();
 			}
+			if (runeStart > runes.size()) {
+				runeStart -= 9;
+				if (runeStart < 0) {
+					runeStart = 0;
+				}
+			}
 			if (clock == 0) {
 				clock = 5;
 
@@ -156,33 +182,50 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 				runes.addAll(getRunesInOtherShip());
 				runes.addAll(getRunesInRealWorld());
 
-				int runeStart = 0;
 				if (runes.size() > runeStart) {
 					runeData.setRune1(runes.get(runeStart).getSecond());
+				} else {
+					runeData.setRune1("");
 				}
 				if (runes.size() > runeStart + 1) {
 					runeData.setRune2(runes.get(runeStart + 1).getSecond());
+				} else {
+					runeData.setRune2("");
 				}
 				if (runes.size() > runeStart + 2) {
 					runeData.setRune3(runes.get(runeStart + 2).getSecond());
+				} else {
+					runeData.setRune3("");
 				}
 				if (runes.size() > runeStart + 3) {
 					runeData.setRune4(runes.get(runeStart + 3).getSecond());
+				} else {
+					runeData.setRune4("");
 				}
 				if (runes.size() > runeStart + 4) {
 					runeData.setRune5(runes.get(runeStart + 4).getSecond());
+				} else {
+					runeData.setRune5("");
 				}
 				if (runes.size() > runeStart + 5) {
 					runeData.setRune6(runes.get(runeStart + 5).getSecond());
+				} else {
+					runeData.setRune6("");
 				}
 				if (runes.size() > runeStart + 6) {
 					runeData.setRune7(runes.get(runeStart + 6).getSecond());
+				} else {
+					runeData.setRune7("");
 				}
 				if (runes.size() > runeStart + 7) {
 					runeData.setRune8(runes.get(runeStart + 7).getSecond());
+				} else {
+					runeData.setRune8("");
 				}
 				if (runes.size() > runeStart + 8) {
 					runeData.setRune9(runes.get(runeStart + 8).getSecond());
+				} else {
+					runeData.setRune9("");
 				}
 			}
 			clock--;

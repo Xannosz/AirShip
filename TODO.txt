@@ -1,9 +1,5 @@
 nether égbolt szinkronizálás
-write out EGA names
-
-### Rune update ###
 rúna közeli rúnák
-rúna tekerő gombok elrejtése, ha nem kell
 
 ### Fancy update ###
 spyglass
@@ -14,6 +10,8 @@ navTable show other ships
 navTable map y level
 ship <-> real world relative coordinates
 all entity teleportation on ship border
+write out EGA names
+hide rune forward/backward buttons when not necessary
 
 ### Extension update ###
 cc interface (ship radar, ground radar)

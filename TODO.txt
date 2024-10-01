@@ -1,6 +1,3 @@
-nether égbolt szinkronizálás
-
-### Fancy update ###
 spyglass
 speed-wind effect + sound ???
 hyper jump sound

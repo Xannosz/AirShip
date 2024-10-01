@@ -8,6 +8,7 @@ ship <-> real world relative coordinates
 all entity teleportation on ship border
 write out EGA names
 hide rune forward/backward buttons when not necessary
+configuration
 
 ### Extension update ###
 cc interface (ship radar, ground radar)

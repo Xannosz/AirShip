@@ -32,10 +32,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static hu.xannosz.airship.util.Constants.REAL_RADIUS;
-import static hu.xannosz.airship.util.RuneUtil.searchForSafeLandPosition;
-import static hu.xannosz.airship.util.RuneUtil.useRune;
+import static hu.xannosz.airship.util.RuneUtil.*;
 import static hu.xannosz.airship.util.ShipUtils.*;
 
 @Slf4j
@@ -55,6 +55,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	@Getter
 	private boolean isEnabled = true;
 	private int runeStart = 0;
+	private Pair<BlockPos, Integer> near;
 
 	public SmallRuneBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(ModBlockEntities.SMALL_RUNE_BLOCK_ENTITY.get(), blockPos, blockState);
@@ -131,6 +132,11 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 				}
 			}
 		}
+		if (buttonId.equals(ButtonId.NEAR)) {
+			if (near != null) {
+				useRune((ServerLevel) level, getBlockPos(), toLevel(near.getSecond(), level), near.getFirst());
+			}
+		}
 	}
 
 	public void jumpToRune(String id) {
@@ -178,56 +184,58 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 				runeData.setLandEnabled(isInShipDimension(level));
 
 				runes = new ArrayList<>();
+				near = null;
 				runes.addAll(getRunesInShip());
 				runes.addAll(getRunesInOtherShip());
 				runes.addAll(getRunesInRealWorld());
-
-				if (runes.size() > runeStart) {
-					runeData.setRune1(runes.get(runeStart).getSecond());
-				} else {
-					runeData.setRune1("");
-				}
-				if (runes.size() > runeStart + 1) {
-					runeData.setRune2(runes.get(runeStart + 1).getSecond());
-				} else {
-					runeData.setRune2("");
-				}
-				if (runes.size() > runeStart + 2) {
-					runeData.setRune3(runes.get(runeStart + 2).getSecond());
-				} else {
-					runeData.setRune3("");
-				}
-				if (runes.size() > runeStart + 3) {
-					runeData.setRune4(runes.get(runeStart + 3).getSecond());
-				} else {
-					runeData.setRune4("");
-				}
-				if (runes.size() > runeStart + 4) {
-					runeData.setRune5(runes.get(runeStart + 4).getSecond());
-				} else {
-					runeData.setRune5("");
-				}
-				if (runes.size() > runeStart + 5) {
-					runeData.setRune6(runes.get(runeStart + 5).getSecond());
-				} else {
-					runeData.setRune6("");
-				}
-				if (runes.size() > runeStart + 6) {
-					runeData.setRune7(runes.get(runeStart + 6).getSecond());
-				} else {
-					runeData.setRune7("");
-				}
-				if (runes.size() > runeStart + 7) {
-					runeData.setRune8(runes.get(runeStart + 7).getSecond());
-				} else {
-					runeData.setRune8("");
-				}
-				if (runes.size() > runeStart + 8) {
-					runeData.setRune9(runes.get(runeStart + 8).getSecond());
-				} else {
-					runeData.setRune9("");
-				}
 			}
+
+			if (runes.size() > runeStart) {
+				runeData.setRune1(runes.get(runeStart).getSecond());
+			} else {
+				runeData.setRune1("");
+			}
+			if (runes.size() > runeStart + 1) {
+				runeData.setRune2(runes.get(runeStart + 1).getSecond());
+			} else {
+				runeData.setRune2("");
+			}
+			if (runes.size() > runeStart + 2) {
+				runeData.setRune3(runes.get(runeStart + 2).getSecond());
+			} else {
+				runeData.setRune3("");
+			}
+			if (runes.size() > runeStart + 3) {
+				runeData.setRune4(runes.get(runeStart + 3).getSecond());
+			} else {
+				runeData.setRune4("");
+			}
+			if (runes.size() > runeStart + 4) {
+				runeData.setRune5(runes.get(runeStart + 4).getSecond());
+			} else {
+				runeData.setRune5("");
+			}
+			if (runes.size() > runeStart + 5) {
+				runeData.setRune6(runes.get(runeStart + 5).getSecond());
+			} else {
+				runeData.setRune6("");
+			}
+			if (runes.size() > runeStart + 6) {
+				runeData.setRune7(runes.get(runeStart + 6).getSecond());
+			} else {
+				runeData.setRune7("");
+			}
+			if (runes.size() > runeStart + 7) {
+				runeData.setRune8(runes.get(runeStart + 7).getSecond());
+			} else {
+				runeData.setRune8("");
+			}
+			if (runes.size() > runeStart + 8) {
+				runeData.setRune9(runes.get(runeStart + 8).getSecond());
+			} else {
+				runeData.setRune9("");
+			}
+
 			clock--;
 		}
 	}
@@ -240,14 +248,15 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 		}
 
 		final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
-		RuneRegistry.INSTANCE.searchForRunes(
-				0, shipData.getSWCore(), shipData.getRadius(), 1000).forEach(
-				(blockPos, runeId) -> {
-					if (!runeId.equals(id)) {
-						runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId));
-					}
-				}
-		);
+		filterRunes(RuneRegistry.INSTANCE.searchForRunes(
+				0, shipData.getSWCore(), shipData.getRadius(), 1000), toLevel(0, level))
+				.forEach(
+						(blockPos, runeId) -> {
+							if (!runeId.equals(id)) {
+								runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId));
+							}
+						}
+				);
 
 		return runes;
 	}
@@ -255,11 +264,26 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInOtherShip() {
 		final List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
 
+		int dist = 0;
+		BlockPos core;
+		if (isInShipDimension(level)) {
+			final ShipData selfShipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
+			core = new BlockPos((int) selfShipData.getRWCoreX(), 100, (int) selfShipData.getRWCoreZ());
+		} else {
+			core = getBlockPos();
+		}
+
 		for (ShipData shipData : getNearShips()) {
-			RuneRegistry.INSTANCE.searchForRunes(
-					0, shipData.getSWCore(), shipData.getRadius(), 1000).forEach(
-					(blockPos, runeId) -> runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId))
-			);
+			for (Map.Entry<BlockPos, String> entry : filterRunes(RuneRegistry.INSTANCE.searchForRunes(
+					0, shipData.getSWCore(), shipData.getRadius(), 1000), toLevel(0, level)).entrySet()) {
+				BlockPos blockPos = entry.getKey();
+				if (near == null || core.distManhattan(new BlockPos((int) shipData.getRWCoreX(), 100, (int) shipData.getRWCoreZ())) < dist) {
+					dist = core.distManhattan(new BlockPos((int) shipData.getRWCoreX(), 100, (int) shipData.getRWCoreZ()));
+					near = new Pair<>(blockPos, 0);
+				}
+				String runeId = entry.getValue();
+				runes.add(new Pair<>(new Pair<>(blockPos, 0), runeId));
+			}
 		}
 
 		return runes;
@@ -268,25 +292,35 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 	private List<Pair<Pair<BlockPos, Integer>, String>> getRunesInRealWorld() {
 		final List<Pair<Pair<BlockPos, Integer>, String>> runes = new ArrayList<>();
 
+		boolean searchForNear;
+
 		BlockPos core;
 		int world;
 		if (isInShipDimension(level)) {
 			final ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
 			world = shipData.getDimensionCode();
 			core = new BlockPos((int) shipData.getRWCoreX(), 200, (int) shipData.getRWCoreZ());
+			searchForNear = near == null;
 		} else {
 			world = toDimensionCode(level);
 			core = getBlockPos();
+			searchForNear = false;
 		}
 
-		RuneRegistry.INSTANCE.searchForRunes(
-				world, core, Config.RUNE_RANGE, 1000).forEach(
-				(blockPos, runeId) -> {
-					if (!runeId.equals(id)) {
-						runes.add(new Pair<>(new Pair<>(blockPos, world), runeId));
-					}
-				}
-		);
+		int dist = 0;
+
+		for (Map.Entry<BlockPos, String> entry : filterRunes(RuneRegistry.INSTANCE.searchForRunes(
+				world, core, Config.RUNE_RANGE, 1000), toLevel(world, level)).entrySet()) {
+			BlockPos blockPos = entry.getKey();
+			String runeId = entry.getValue();
+			if ((near == null || core.distManhattan(blockPos) < dist) && searchForNear) {
+				dist = core.distManhattan(blockPos);
+				near = new Pair<>(blockPos, world);
+			}
+			if (!runeId.equals(id)) {
+				runes.add(new Pair<>(new Pair<>(blockPos, world), runeId));
+			}
+		}
 
 		return runes;
 	}

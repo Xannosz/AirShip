@@ -1,5 +1,4 @@
 nether égbolt szinkronizálás
-rúna közeli rúnák
 
 ### Fancy update ###
 spyglass

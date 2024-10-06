@@ -1,19 +1,28 @@
 package hu.xannosz.airship.blockentity;
 
+import hu.xannosz.airship.network.ModMessages;
+import hu.xannosz.airship.network.PlaySoundPacket;
 import hu.xannosz.airship.registries.AirShipRegistry;
+import hu.xannosz.airship.registries.ShipData;
 import hu.xannosz.airship.util.ShipDirection;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Random;
 
 import static hu.xannosz.airship.util.Config.*;
+import static hu.xannosz.airship.util.Constants.SHIP_Y_MAX;
+import static hu.xannosz.airship.util.Constants.SHIP_Y_MIN;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 @Slf4j
@@ -133,6 +142,18 @@ public class CoreBlockEntity extends BlockEntity {
 				enderEnergy = 0;
 				necessaryEnderEnergy = 0;
 				isEnderEngineOn = false;
+
+				ShipData data = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
+				List<ServerPlayer> serverPlayers = ((ServerLevel) level).getPlayers(
+						player -> {
+							Vec3 position = player.getPosition(0.1f);
+							return isOnTheShip(data, position);
+						}
+				);
+
+				for (ServerPlayer player : serverPlayers) {
+					ModMessages.sendToPlayer(new PlaySoundPacket(getBlockPos(), true), player);
+				}
 			}
 			setChanged();
 		}
@@ -141,5 +162,17 @@ public class CoreBlockEntity extends BlockEntity {
 			AirShipRegistry.INSTANCE.updatePosition((direction.getX() * speed) / 20,
 					(direction.getZ() * speed) / 20, getBlockPos());
 		}
+	}
+
+	private boolean isOnTheShip(ShipData data, Vec3 position) {
+		boolean inBox;
+		inBox = data.getSWCore().getX() - data.getRadius() <= position.x + 0.5f;
+		inBox &= data.getSWCore().getX() + data.getRadius() >= position.x - 0.5f;
+		inBox &= SHIP_Y_MIN <= position.y + 0.5f;
+		inBox &= SHIP_Y_MAX >= position.y - 0.5f;
+		inBox &= data.getSWCore().getZ() - data.getRadius() <= position.z + 0.5f;
+		inBox &= data.getSWCore().getZ() + data.getRadius() >= position.z - 0.5f;
+
+		return inBox;
 	}
 }

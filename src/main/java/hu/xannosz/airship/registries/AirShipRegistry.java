@@ -55,6 +55,9 @@ public class AirShipRegistry extends SavedData {
 				return null;
 			}
 		}
+		if (block.getY() > SHIP_Y_MAX || block.getY() < SHIP_Y_MIN) {
+			return null;
+		}
 		for (ShipData ship : ships) {
 			if (isInShip(block, dim, ship)) {
 				return ship;

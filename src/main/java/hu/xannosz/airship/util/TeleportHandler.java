@@ -16,7 +16,7 @@ public class TeleportHandler {
 
 	@SuppressWarnings("resource")
 	public static void onLivingTick(LivingEvent.LivingTickEvent e) {
-		LivingEntity entity = e.getEntity();
+		final LivingEntity entity = e.getEntity();
 
 		if (entity.level().isClientSide() || !(entity instanceof Player)) {
 			return;

@@ -1,10 +1,12 @@
-speed-wind effect + sound ???
-hyper jump sound
 radar show other ships
-all entity teleportation on ship border
+robot pilot (nav table)
+
+other entities on tp
+speed-wind effect + sound ???
 write out EGA names
 configuration
 
 ### Extension update ###
 cc interface (ship radar, ground radar)
 big rune, address as coordinate holder (9 sign?) not in ship dimension
+weapons

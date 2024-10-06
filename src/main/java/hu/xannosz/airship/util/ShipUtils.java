@@ -203,7 +203,7 @@ public class ShipUtils {
 		if (dim == 0) {
 			ShipData shipData = AirShipRegistry.INSTANCE.isInShipBorder(block);
 			if (shipData != null) {
-				return Pair.of(ExternalRegistry.INSTANCE.getDimensionName(shipData.getDimensionCode()), fromShipCoordinates(block, shipData, shipData.getDimensionCode()));
+				return Pair.of(ExternalRegistry.INSTANCE.getDimensionName(shipData.getDimensionCode()), fromShipCoordinates(shipData, shipData.getDimensionCode()));
 			} else {
 				shipData = AirShipRegistry.INSTANCE.isInShip(block, dim);
 				if (shipData == null) {
@@ -217,17 +217,17 @@ public class ShipUtils {
 
 		ShipData shipData = AirShipRegistry.INSTANCE.isInShip(block, dim);
 		if (shipData != null) {
-			return Pair.of(ExternalRegistry.INSTANCE.getDimensionName(0), toShipCoordinates(block, shipData));
+			return Pair.of(ExternalRegistry.INSTANCE.getDimensionName(0), toShipCoordinates(shipData));
 		}
 
 		return null;
 	}
 
-	private static BlockPos toShipCoordinates(BlockPos pos, ShipData data) {
-		return new BlockPos(data.getSWCore().getX(), SHIP_Y_MIN + 20, data.getSWCore().getZ());
+	private static BlockPos toShipCoordinates(ShipData data) {
+		return new BlockPos(data.getSWCore().getX(), SHIP_Y_MIN + 60, data.getSWCore().getZ());
 	}
 
-	private static BlockPos fromShipCoordinates(BlockPos pos, ShipData data, int dimCode) {
+	private static BlockPos fromShipCoordinates(ShipData data, int dimCode) {
 		final int yPosition = ExternalRegistry.INSTANCE.getDimension(dimCode).referenceY() - REAL_RADIUS - 20;
 		return new BlockPos((int) data.getRWCoreX(), yPosition, (int) data.getRWCoreZ());
 	}

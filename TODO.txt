@@ -1,13 +1,8 @@
-spyglass
 speed-wind effect + sound ???
 hyper jump sound
-navTable show target
-navTable show other ships
-navTable map y level
-ship <-> real world relative coordinates
+radar show other ships
 all entity teleportation on ship border
 write out EGA names
-hide rune forward/backward buttons when not necessary
 configuration
 
 ### Extension update ###

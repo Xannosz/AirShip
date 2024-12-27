@@ -1,16 +1,17 @@
 ### Alpha ###
 radar show other ships
 configuration
+
 clean up
-rename mod
-describe
-readme
-page content
+wiki?
 
 ### Beta ###
-other entities on tp
+other entities on tp (only in ship dimension???)
+nav table one generator per ship
+radar one generator per ship
+bigger nav table, without UI
 speed-wind effect + sound ???
-write out EGA names
+write out EGA names 
 
 ### Release ###
 more ship controller tool (modern, lantean, goa'uld, star-trek)

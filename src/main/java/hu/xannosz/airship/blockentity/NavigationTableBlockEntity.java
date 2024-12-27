@@ -30,8 +30,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.util.LazyOptional;
@@ -49,12 +47,11 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 	@Getter
 	@Setter
 	private MapData mapData = new MapData(getBlockPos());
-	//CLIENT ONLY
 	@Setter
 	private boolean isOpened = false;
+
+	//SERVER ONLY
 	private int clock = 0;
-	private int selectedX = -1;
-	private int selectedY = -1;
 
 	private boolean showAirShips = true;
 	private int scale = 1;
@@ -198,11 +195,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 		}
 	}
 
-	public void clickOnMap(int x, int y) {
-		selectedX = x;
-		selectedY = y;
-	}
-
 	@SuppressWarnings("unused")
 	public static void tick(Level level, BlockPos pos, BlockState state, NavigationTableBlockEntity blockEntity) {
 		blockEntity.tick();
@@ -222,8 +214,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 		} else {
 			if (clock == 0) {
 				clock = 5;
-				//log.info("SCX " + selectedX);
-				//log.info("SCY " + selectedY);
 
 				int x;
 				int z;
@@ -266,40 +256,17 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 				}
 
 				mapData.setShowAirShips(showAirShips);
-				ShipUtils.fillMapData(serverLevel, mapData, scale, x, z);
-
-				//List<ShipData> ships = AirShipRegistry.INSTANCE.getShipsInRadius(getBlockPos(), toDimensionCode(level), 60 * scale);
-
-				//int j2 = (x / scale + runX - 50) * scale;
-				//int k2 = (z / scale + runZ - 50) * scale;
+				if (isOpened) {
+					isOpened = false;
+					ShipUtils.fillMapData(serverLevel, mapData, scale, x, z);
+				}
 			}
 			clock--;
 		}
 	}
 
-	private void drawMap(int x, int z, ServerLevel serverLevel) {
-		int t = scale * 50;
-		for (int runX = 0; runX < 100; runX++) {
-			for (int runZ = 0; runZ < 100; runZ++) {
-				mapData.setColor(runX, 100 - runZ,
-						getColorFor(x + runX * scale - t, z + runZ * scale - t, serverLevel));
-			}
-		}
-	}
-
-	private int getColorFor(int x, int z, ServerLevel serverLevel) {
-		for (int y = 400; y > -100; y--) {
-			BlockPos pos = new BlockPos(x, y, z);
-			BlockState underTest = serverLevel.getBlockState(pos);
-			if (!underTest.getBlock().equals(Blocks.AIR) && !underTest.getBlock().equals(Blocks.VOID_AIR)) {
-				serverLevel.getBrightness(LightLayer.SKY, pos);
-				return underTest.getMapColor(serverLevel, pos).col;
-			}
-		}
-		return Blocks.AIR.defaultMapColor().col;
-	}
-
 	public void responseToServer(ServerPlayer player) {
+		isOpened = true;
 		ModMessages.sendToPlayer(mapData, player);
 	}
 }

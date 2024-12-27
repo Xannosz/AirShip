@@ -1,12 +1,23 @@
+### Alpha ###
 radar show other ships
-robot pilot (nav table)
+configuration
+clean up
+rename mod
+describe
+readme
+page content
 
+### Beta ###
 other entities on tp
 speed-wind effect + sound ???
 write out EGA names
-configuration
+
+### Release ###
+more ship controller tool (modern, lantean, goa'uld, star-trek)
+robot pilot
+graphically correct miniships
 
 ### Extension update ###
-cc interface (ship radar, ground radar)
+cc interface (ship radar, ground radar, controller)
 big rune, address as coordinate holder (9 sign?) not in ship dimension
 weapons

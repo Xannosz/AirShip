@@ -39,7 +39,7 @@ public class ClickOnMap {
 			// SERVER SITE
 			BlockEntity entity = Objects.requireNonNull(context.getSender()).level().getBlockEntity(position);
 			if (entity instanceof NavigationTableBlockEntity navigationTableBlockEntity) {
-				navigationTableBlockEntity.clickOnMap(x, y);
+			//	navigationTableBlockEntity.clickOnMap(x, y);
 			}
 		});
 	}

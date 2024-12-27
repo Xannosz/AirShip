@@ -7,3 +7,4 @@ fly out and in
 hyper jump
 one block jump
 rune to ground and back
+rune to other ship and back

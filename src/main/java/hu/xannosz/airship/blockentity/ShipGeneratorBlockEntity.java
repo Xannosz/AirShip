@@ -19,8 +19,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
+import static hu.xannosz.airship.config.AirshipConfig.DEFAULT_SHIP_RADIUS;
 import static hu.xannosz.airship.item.ShipDetector.CORE_POSITION_TAG;
-import static hu.xannosz.airship.util.Config.DEFAULT_SHIP_RADIUS;
 import static hu.xannosz.airship.util.ShipUtils.*;
 
 @Slf4j
@@ -90,7 +90,7 @@ public class ShipGeneratorBlockEntity extends BlockEntity {
 			final ServerLevel shipWorld = toLevel(getShipDimName(), (ServerLevel) level);
 
 			if (corePosition.getY() == 0) {
-				corePosition = AirShipRegistry.INSTANCE.getNewCorePosition(getBlockPos(), level, DEFAULT_SHIP_RADIUS);
+				corePosition = AirShipRegistry.INSTANCE.getNewCorePosition(getBlockPos(), level, DEFAULT_SHIP_RADIUS.get());
 				shipWorld.setBlock(corePosition, ModBlocks.CORE.get().defaultBlockState(), 2, 0);
 			}
 

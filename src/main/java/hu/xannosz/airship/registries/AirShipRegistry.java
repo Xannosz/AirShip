@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static hu.xannosz.airship.util.Config.GENERATION_PERTURBATION;
+import static hu.xannosz.airship.config.AirshipConfig.GENERATION_PERTURBATION;
 import static hu.xannosz.airship.util.Constants.*;
 import static hu.xannosz.airship.util.CopyUtil.copy;
 import static hu.xannosz.airship.util.ShipUtils.*;
@@ -32,8 +32,8 @@ public class AirShipRegistry extends SavedData {
 		BlockPos corePosition = getFreePosition(radius);
 
 		ships.add(new ShipData(
-				generationPosition.getX() + new Random().nextInt(-GENERATION_PERTURBATION, GENERATION_PERTURBATION),
-				generationPosition.getZ() + new Random().nextInt(-GENERATION_PERTURBATION, GENERATION_PERTURBATION),
+				generationPosition.getX() + new Random().nextInt(-GENERATION_PERTURBATION.get(), GENERATION_PERTURBATION.get()),
+				generationPosition.getZ() + new Random().nextInt(-GENERATION_PERTURBATION.get(), GENERATION_PERTURBATION.get()),
 				toDimensionCode(dimension), corePosition, radius, generateLetters(3) + "-" + generateDigits(2)));
 		setDirty();
 		return copy(corePosition);

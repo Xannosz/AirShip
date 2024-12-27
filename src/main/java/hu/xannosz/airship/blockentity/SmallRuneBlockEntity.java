@@ -10,7 +10,6 @@ import hu.xannosz.airship.registries.ShipData;
 import hu.xannosz.airship.screen.RuneMenu;
 import hu.xannosz.airship.util.ButtonId;
 import hu.xannosz.airship.util.ButtonUser;
-import hu.xannosz.airship.util.Config;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static hu.xannosz.airship.config.AirshipConfig.RUNE_RANGE;
 import static hu.xannosz.airship.util.Constants.REAL_RADIUS;
 import static hu.xannosz.airship.util.RuneUtil.*;
 import static hu.xannosz.airship.util.ShipUtils.*;
@@ -310,7 +310,7 @@ public class SmallRuneBlockEntity extends BlockEntity implements MenuProvider, B
 		int dist = 0;
 
 		for (Map.Entry<BlockPos, String> entry : filterRunes(RuneRegistry.INSTANCE.searchForRunes(
-				world, core, Config.RUNE_RANGE, 1000), toLevel(world, level)).entrySet()) {
+				world, core, RUNE_RANGE.get(), 1000), toLevel(world, level)).entrySet()) {
 			BlockPos blockPos = entry.getKey();
 			String runeId = entry.getValue();
 			if ((near == null || core.distManhattan(blockPos) < dist) && searchForNear) {

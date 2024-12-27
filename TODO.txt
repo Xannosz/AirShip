@@ -1,6 +1,5 @@
 ### Alpha ###
 radar show other ships
-configuration
 
 clean up
 wiki?
@@ -11,10 +10,10 @@ nav table one generator per ship
 radar one generator per ship
 bigger nav table, without UI
 speed-wind effect + sound ???
-write out EGA names 
+write out EGA names
 
 ### Release ###
-more ship controller tool (modern, lantean, goa'uld, star-trek)
+more ship controller tool (modern, lantean, goa'uld, star-trek, steam-punk)
 robot pilot
 graphically correct miniships
 

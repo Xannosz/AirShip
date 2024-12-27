@@ -21,9 +21,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static hu.xannosz.airship.config.AirshipConfig.DEFAULT_SHIP_RADIUS;
 import static hu.xannosz.airship.item.ShipDetector.CORE_POSITION_TAG;
 import static hu.xannosz.airship.registries.AirShipRegistry.SHIP_CORE_Y_POSITION;
-import static hu.xannosz.airship.util.Config.DEFAULT_SHIP_RADIUS;
 import static hu.xannosz.airship.util.RuneUtil.searchForSafeLandPosition;
 import static hu.xannosz.airship.util.RuneUtil.useRune;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
@@ -80,7 +80,7 @@ public class AirshipCommand {
 				.then(Commands.literal("create")
 						.then(Commands.argument("radius", IntegerArgumentType.integer()).executes(
 								(context -> createShip(context.getSource(), context.getArgument("radius", Integer.class)))
-						)).executes(context -> createShip(context.getSource(), DEFAULT_SHIP_RADIUS)))
+						)).executes(context -> createShip(context.getSource(), DEFAULT_SHIP_RADIUS.get())))
 		);
 	}
 

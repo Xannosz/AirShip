@@ -3,6 +3,7 @@ package hu.xannosz.airship;
 import hu.xannosz.airship.block.ModBlocks;
 import hu.xannosz.airship.blockentity.ModBlockEntities;
 import hu.xannosz.airship.command.AirshipCommand;
+import hu.xannosz.airship.config.AirshipConfig;
 import hu.xannosz.airship.item.ModItems;
 import hu.xannosz.airship.network.ModMessages;
 import hu.xannosz.airship.registries.AirShipRegistry;
@@ -14,7 +15,9 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.server.command.ConfigCommand;
@@ -32,6 +35,8 @@ public class AirShip {
 		ModBlockEntities.BLOCK_ENTITIES.register(bus);
 		ModMenus.MENUS.register(bus);
 		ModCreativeModeTab.CREATIVE_MODE_TABS.register(bus);
+
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AirshipConfig.SPEC, MOD_ID + ".toml");
 
 		bus.addListener(this::commonSetup);
 	}

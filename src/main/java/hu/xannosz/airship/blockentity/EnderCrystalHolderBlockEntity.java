@@ -20,8 +20,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-import static hu.xannosz.airship.util.Config.ENERGY_HOLDER_SEND_ENERGY;
-import static hu.xannosz.airship.util.Config.ENERGY_PER_CRYSTAL;
+import static hu.xannosz.airship.config.AirshipConfig.ENERGY_HOLDER_SEND_ENERGY;
+import static hu.xannosz.airship.config.AirshipConfig.ENERGY_PER_CRYSTAL;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class EnderCrystalHolderBlockEntity extends BlockEntity {
@@ -50,7 +50,7 @@ public class EnderCrystalHolderBlockEntity extends BlockEntity {
 		if (crystal > 0) {
 			return false;
 		}
-		crystal = ENERGY_PER_CRYSTAL;
+		crystal = ENERGY_PER_CRYSTAL.get();
 		return true;
 	}
 
@@ -92,13 +92,13 @@ public class EnderCrystalHolderBlockEntity extends BlockEntity {
 				BlockEntity entity = level.getBlockEntity(shipData.getSWCore());
 
 				if (entity instanceof CoreBlockEntity coreBlockEntity) {
-					crystal -= coreBlockEntity.increaseCrystalEnergy(Math.min(ENERGY_HOLDER_SEND_ENERGY, crystal));
+					crystal -= coreBlockEntity.increaseCrystalEnergy(Math.min(ENERGY_HOLDER_SEND_ENERGY.get(), crystal));
 				}
 				setChanged();
 			}
 
 			int size = state.getValue(EnderCrystalHolder.SIZE);
-			int crystalSize = (int) (((crystal + 0.0f) / ENERGY_PER_CRYSTAL) * EnderCrystalHolder.MAX_SIZE);
+			int crystalSize = (int) (((crystal + 0.0f) / ENERGY_PER_CRYSTAL.get()) * EnderCrystalHolder.MAX_SIZE);
 			if (crystalSize != size) {
 				level.setBlock(getBlockPos(), ModBlocks.ENDER_CRYSTAL_HOLDER.get().defaultBlockState()
 						.setValue(EnderCrystalHolder.SIZE, crystalSize), 2, 0);

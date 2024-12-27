@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Random;
 
-import static hu.xannosz.airship.util.Config.*;
+import static hu.xannosz.airship.config.AirshipConfig.*;
 import static hu.xannosz.airship.util.Constants.SHIP_Y_MAX;
 import static hu.xannosz.airship.util.Constants.SHIP_Y_MIN;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
@@ -133,11 +133,11 @@ public class CoreBlockEntity extends BlockEntity {
 		}
 
 		if (isEnderEngineOn) {
-			necessaryEnderEnergy = speed * 5 * CRYSTAL_ENERGY_PER_THOUSAND_BLOCK;
+			necessaryEnderEnergy = speed * 5 * CRYSTAL_ENERGY_PER_THOUSAND_BLOCK.get();
 			enderEnergy = Math.min(enderEnergy, necessaryEnderEnergy);
 			if (enderEnergy == necessaryEnderEnergy && speed > 0) {
-				AirShipRegistry.INSTANCE.updatePosition(direction.getX() * speed * ENDER_ENGINE_SPEED + new Random().nextInt(-speed * WARP_PERTURBATION, speed * WARP_PERTURBATION),
-						direction.getZ() * speed * ENDER_ENGINE_SPEED + new Random().nextInt(-speed * WARP_PERTURBATION, speed * WARP_PERTURBATION),
+				AirShipRegistry.INSTANCE.updatePosition(direction.getX() * speed * ENDER_ENGINE_SPEED.get() + new Random().nextInt(-speed * WARP_PERTURBATION.get(), speed * WARP_PERTURBATION.get()),
+						direction.getZ() * speed * ENDER_ENGINE_SPEED.get() + new Random().nextInt(-speed * WARP_PERTURBATION.get(), speed * WARP_PERTURBATION.get()),
 						getBlockPos());
 				enderEnergy = 0;
 				necessaryEnderEnergy = 0;

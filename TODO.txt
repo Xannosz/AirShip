@@ -1,7 +1,7 @@
 ### Alpha ###
 radar show other ships
 
-clean up
+clean up (remove ship button from table)
 wiki?
 
 ### Beta ###
@@ -15,7 +15,6 @@ write out EGA names
 ### Release ###
 more ship controller tool (modern, lantean, goa'uld, star-trek, steam-punk)
 robot pilot
-graphically correct miniships
 
 ### Extension update ###
 cc interface (ship radar, ground radar, controller)

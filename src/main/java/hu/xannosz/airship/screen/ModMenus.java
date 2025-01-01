@@ -17,6 +17,9 @@ public class ModMenus {
 	public static final RegistryObject<MenuType<RuneMenu>> RUNE_MENU =
 			registerMenuType(RuneMenu::new, "rune_menu");
 
+	public static final RegistryObject<MenuType<RadarMenu>> RADAR_MENU =
+			registerMenuType(RadarMenu::new, "radar_menu");
+
 	private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
 		return MENUS.register(name, () -> IForgeMenuType.create(factory));
 	}

@@ -5,6 +5,7 @@ import hu.xannosz.airship.client.ShipDimensionEffect;
 import hu.xannosz.airship.item.ModItems;
 import hu.xannosz.airship.screen.ModMenus;
 import hu.xannosz.airship.screen.NavigationTableScreen;
+import hu.xannosz.airship.screen.RadarScreen;
 import hu.xannosz.airship.screen.RuneScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -23,6 +24,7 @@ public class AirShipModEvents {
 	public static void onClientSetup(FMLClientSetupEvent event) {
 		MenuScreens.register(ModMenus.NAVIGATION_TABLE_MENU.get(), NavigationTableScreen::new);
 		MenuScreens.register(ModMenus.RUNE_MENU.get(), RuneScreen::new);
+		MenuScreens.register(ModMenus.RADAR_MENU.get(), RadarScreen::new);
 		event.enqueueWork(() -> ItemProperties.register(ModItems.SHIP_DETECTOR.get(),
 				new ResourceLocation(AirShip.MOD_ID, "state"), new ShipDetectorFunction()));
 	}

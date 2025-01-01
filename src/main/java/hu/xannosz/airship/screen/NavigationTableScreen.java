@@ -24,7 +24,6 @@ public class NavigationTableScreen extends AbstractContainerScreen<NavigationTab
 
 	private int x;
 	private int y;
-	private GraphicalButton toggleShipsDisplay;
 
 	public NavigationTableScreen(NavigationTableMenu menu, Inventory inventory, Component title) {
 		super(menu, inventory, title);
@@ -39,16 +38,6 @@ public class NavigationTableScreen extends AbstractContainerScreen<NavigationTab
 		x = (width - imageWidth) / 2;
 		y = (height - imageHeight) / 2;
 
-		toggleShipsDisplay = new GraphicalButton(ButtonConfig.builder()
-				.buttonId(ButtonId.TOGGLE_SHIPS_DISPLAY)
-				.position(getMenu().getBlockEntity().getBlockPos())
-				.hitBoxX(x + 111)
-				.hitBoxY(y + 7)
-				.hitBoxW(14)
-				.hitBoxH(14)
-				.hoveredX(15)
-				.hoveredY(219)
-				.build(), TEXTURE);
 		final GraphicalButton writeCoordinates = new GraphicalButton(ButtonConfig.builder()
 				.buttonId(ButtonId.WRITE_COORDINATES)
 				.position(getMenu().getBlockEntity().getBlockPos())
@@ -80,7 +69,6 @@ public class NavigationTableScreen extends AbstractContainerScreen<NavigationTab
 				.hoveredY(219)
 				.build(), TEXTURE);
 
-		addRenderableWidget(toggleShipsDisplay);
 		addRenderableWidget(writeCoordinates);
 		addRenderableWidget(downScale);
 		addRenderableWidget(upScale);
@@ -94,7 +82,6 @@ public class NavigationTableScreen extends AbstractContainerScreen<NavigationTab
 		RenderSystem.enableBlend();
 		guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 		getMenu().getBlockEntity().setOpened(true);
-		toggleShipsDisplay.setSelected(getMenu().getMapData().isShowAirShips());
 
 		for (int runX = 0; runX < 100; runX++) {
 			for (int runY = 0; runY < 100; runY++) {

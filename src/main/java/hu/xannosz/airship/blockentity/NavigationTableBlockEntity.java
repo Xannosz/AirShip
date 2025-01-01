@@ -49,11 +49,11 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 	private MapData mapData = new MapData(getBlockPos());
 	@Setter
 	private boolean isOpened = false;
-
-	//SERVER ONLY
 	private int clock = 0;
 
 	private boolean showAirShips = true;
+
+	//SERVER ONLY
 	private int scale = 1;
 
 	@Getter

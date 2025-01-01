@@ -14,6 +14,7 @@ public class AirshipConfig {
 	public static final ForgeConfigSpec.ConfigValue<Integer> GENERATION_PERTURBATION;
 	public static final ForgeConfigSpec.ConfigValue<Integer> RUNE_RANGE;
 	public static final ForgeConfigSpec.ConfigValue<Integer> DEFAULT_SHIP_RADIUS;
+	public static final ForgeConfigSpec.ConfigValue<Integer> RADAR_SCAN_RADIUS;
 
 	static {
 		BUILDER.push("Configs for Better Minecarts Mod");
@@ -34,6 +35,8 @@ public class AirshipConfig {
 				.defineInRange("runeRange", 300, 100, 1500);
 		DEFAULT_SHIP_RADIUS = BUILDER.comment("Default ship radius")
 				.defineInRange("defaultShipRadius", 500, 150, 1000);
+		RADAR_SCAN_RADIUS = BUILDER.comment("Radar scan radius")
+				.defineInRange("radarScanRadius", 5000, 500, 15000);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();

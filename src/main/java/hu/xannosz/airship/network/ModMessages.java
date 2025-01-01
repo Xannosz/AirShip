@@ -45,6 +45,21 @@ public class ModMessages {
 				.encoder(MapData::toBytes)
 				.consumerMainThread(MapData::handler)
 				.add();
+		INSTANCE.messageBuilder(GetRadarData.class, id(), NetworkDirection.PLAY_TO_SERVER)
+				.decoder(GetRadarData::new)
+				.encoder(GetRadarData::toBytes)
+				.consumerMainThread(GetRadarData::handler)
+				.add();
+		INSTANCE.messageBuilder(RadarData.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+				.decoder(RadarData::new)
+				.encoder(RadarData::toBytes)
+				.consumerMainThread(RadarData::handler)
+				.add();
+		INSTANCE.messageBuilder(ClickOnRadar.class, id(), NetworkDirection.PLAY_TO_SERVER)
+				.decoder(ClickOnRadar::new)
+				.encoder(ClickOnRadar::toBytes)
+				.consumerMainThread(ClickOnRadar::handler)
+				.add();
 		INSTANCE.messageBuilder(GetSmallRuneData.class, id(), NetworkDirection.PLAY_TO_SERVER)
 				.decoder(GetSmallRuneData::new)
 				.encoder(GetSmallRuneData::toBytes)

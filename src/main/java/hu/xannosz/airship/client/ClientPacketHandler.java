@@ -1,9 +1,11 @@
 package hu.xannosz.airship.client;
 
 import hu.xannosz.airship.blockentity.NavigationTableBlockEntity;
+import hu.xannosz.airship.blockentity.RadarBlockEntity;
 import hu.xannosz.airship.blockentity.SmallRuneBlockEntity;
 import hu.xannosz.airship.network.MapData;
 import hu.xannosz.airship.network.PlaySoundPacket;
+import hu.xannosz.airship.network.RadarData;
 import hu.xannosz.airship.network.SmallRuneData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundEvents;
@@ -19,6 +21,13 @@ public class ClientPacketHandler {
 		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(mapData.getPosition());
 		if (entity instanceof NavigationTableBlockEntity navigationTableBlockEntity) {
 			navigationTableBlockEntity.setMapData(mapData);
+		}
+	}
+
+	public static void handleRadarData(RadarData radarData, Supplier<NetworkEvent.Context> ctx) {
+		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(radarData.getPosition());
+		if (entity instanceof RadarBlockEntity radarBlockEntity) {
+			radarBlockEntity.setRadarData(radarData);
 		}
 	}
 

@@ -16,61 +16,49 @@ import java.util.function.Supplier;
 
 @Getter
 @Setter
-public class MapData {
+public class RadarData {
 	private final BlockPos position;
-	private final Map<Integer, Map<Integer, Integer>> colors;
-	private boolean showAirShips;
+	private final Map<Integer, Map<Integer, String>> ships;
 	private String name;
 	private ShipDirection direction;
 	private int realX;
 	private int realZ;
 	private int speed;
-	private int targetX;
-	private int targetZ;
-	private boolean hasTarget;
 
-	public MapData(BlockPos position) {
+	public RadarData(BlockPos position) {
 		this.position = position;
-		colors = new HashMap<>();
+		ships = new HashMap<>();
 		name = "";
 		direction = ShipDirection.N;
 	}
 
-	public MapData(FriendlyByteBuf buf) {
+	public RadarData(FriendlyByteBuf buf) {
 		position = buf.readBlockPos();
-		colors = buf.readMap(FriendlyByteBuf::readInt, fbBuf -> fbBuf.readMap(FriendlyByteBuf::readInt, FriendlyByteBuf::readInt));
-		showAirShips = buf.readBoolean();
+		ships = buf.readMap(FriendlyByteBuf::readInt, fbBuf -> fbBuf.readMap(FriendlyByteBuf::readInt, FriendlyByteBuf::readUtf));
 		name = buf.readUtf();
 		direction = buf.readEnum(ShipDirection.class);
 		realX = buf.readInt();
 		realZ = buf.readInt();
 		speed = buf.readInt();
-		targetX = buf.readInt();
-		targetZ = buf.readInt();
-		hasTarget = buf.readBoolean();
 	}
 
-	public void setColor(int x, int y, int color) {
-		colors.computeIfAbsent(x, k -> new HashMap<>());
-		colors.get(x).put(y, color);
+	public void setShip(int x, int z, String name) {
+		ships.computeIfAbsent(x, k -> new HashMap<>());
+		ships.get(x).put(z, name);
 	}
 
-	public int getColor(int x, int y) {
-		return colors.getOrDefault(x, new HashMap<>()).getOrDefault(y, 0);
+	public String getShip(int x, int z) {
+		return ships.getOrDefault(x, new HashMap<>()).getOrDefault(z, "");
 	}
 
 	public void toBytes(FriendlyByteBuf buf) {
 		buf.writeBlockPos(position);
-		buf.writeMap(colors, FriendlyByteBuf::writeInt, (fbBuf, iiMap) -> fbBuf.writeMap(iiMap, FriendlyByteBuf::writeInt, FriendlyByteBuf::writeInt));
-		buf.writeBoolean(showAirShips);
+		buf.writeMap(ships, FriendlyByteBuf::writeInt, (fbBuf, iiMap) -> fbBuf.writeMap(iiMap, FriendlyByteBuf::writeInt, FriendlyByteBuf::writeUtf));
 		buf.writeUtf(name);
 		buf.writeEnum(direction);
 		buf.writeInt(realX);
 		buf.writeInt(realZ);
 		buf.writeInt(speed);
-		buf.writeInt(targetX);
-		buf.writeInt(targetZ);
-		buf.writeBoolean(hasTarget);
 	}
 
 	public void handler(Supplier<NetworkEvent.Context> supplier) {
@@ -78,7 +66,7 @@ public class MapData {
 		context.enqueueWork(() ->
 				// CLIENT SITE
 				DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
-						ClientPacketHandler.handleMapData(this, supplier))
+						ClientPacketHandler.handleRadarData(this, supplier))
 		);
 	}
 }

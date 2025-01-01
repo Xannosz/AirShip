@@ -51,8 +51,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 	private boolean isOpened = false;
 	private int clock = 0;
 
-	private boolean showAirShips = true;
-
 	//SERVER ONLY
 	private int scale = 1;
 
@@ -95,7 +93,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 	@Override
 	protected void saveAdditional(@NotNull CompoundTag tag) {
 		tag.put("navigation.inventory", itemHandler.serializeNBT());
-		tag.putBoolean("navigation.showAirShips", showAirShips);
 		tag.putInt("navigation.scale", scale);
 		super.saveAdditional(tag);
 	}
@@ -104,7 +101,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 	public void load(@NotNull CompoundTag nbt) {
 		super.load(nbt);
 		itemHandler.deserializeNBT(nbt.getCompound("navigation.inventory"));
-		showAirShips = nbt.getBoolean("navigation.showAirShips");
 		scale = nbt.getInt("navigation.scale");
 	}
 
@@ -122,10 +118,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 	@Override
 	@SuppressWarnings("ConstantConditions")
 	public void executeButtonClick(ButtonId buttonId) {
-		if (buttonId.equals(ButtonId.TOGGLE_SHIPS_DISPLAY)) {
-			showAirShips = !showAirShips;
-			setChanged();
-		}
 		if (buttonId.equals(ButtonId.DOWN_SCALE)) {
 			scale++;
 			if (scale > 5) {
@@ -255,7 +247,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 					}
 				}
 
-				mapData.setShowAirShips(showAirShips);
 				if (isOpened) {
 					isOpened = false;
 					ShipUtils.fillMapData(serverLevel, mapData, scale, x, z);

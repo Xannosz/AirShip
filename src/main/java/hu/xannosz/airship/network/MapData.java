@@ -19,7 +19,6 @@ import java.util.function.Supplier;
 public class MapData {
 	private final BlockPos position;
 	private final Map<Integer, Map<Integer, Integer>> colors;
-	private boolean showAirShips;
 	private String name;
 	private ShipDirection direction;
 	private int realX;
@@ -39,7 +38,6 @@ public class MapData {
 	public MapData(FriendlyByteBuf buf) {
 		position = buf.readBlockPos();
 		colors = buf.readMap(FriendlyByteBuf::readInt, fbBuf -> fbBuf.readMap(FriendlyByteBuf::readInt, FriendlyByteBuf::readInt));
-		showAirShips = buf.readBoolean();
 		name = buf.readUtf();
 		direction = buf.readEnum(ShipDirection.class);
 		realX = buf.readInt();
@@ -62,7 +60,6 @@ public class MapData {
 	public void toBytes(FriendlyByteBuf buf) {
 		buf.writeBlockPos(position);
 		buf.writeMap(colors, FriendlyByteBuf::writeInt, (fbBuf, iiMap) -> fbBuf.writeMap(iiMap, FriendlyByteBuf::writeInt, FriendlyByteBuf::writeInt));
-		buf.writeBoolean(showAirShips);
 		buf.writeUtf(name);
 		buf.writeEnum(direction);
 		buf.writeInt(realX);

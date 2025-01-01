@@ -1,7 +1,7 @@
 ### Alpha ###
 radar show other ships
 
-clean up (remove ship button from table)
+clean up
 wiki?
 
 ### Beta ###

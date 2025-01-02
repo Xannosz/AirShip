@@ -23,8 +23,8 @@ public class RadarScreen extends AbstractContainerScreen<RadarMenu> {
 
 	public RadarScreen(RadarMenu menu, Inventory inventory, Component title) {
 		super(menu, inventory, title);
-		imageHeight = 88;
-		imageWidth = 238;
+		imageHeight = 159;
+		imageWidth = 254;
 	}
 
 	@Override

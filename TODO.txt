@@ -5,15 +5,13 @@ clean up
 wiki?
 
 ### Beta ###
-other entities on tp (only in ship dimension???)
 nav table one generator per ship
-radar one generator per ship
-bigger nav table, without UI
 speed-wind effect + sound ???
-write out EGA names
+complex recipes
 
 ### Release ###
 more ship controller tool (modern, lantean, goa'uld, star-trek, steam-punk)
+cosmetically extensions?
 robot pilot
 
 ### Extension update ###

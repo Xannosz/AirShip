@@ -5,10 +5,7 @@ import hu.xannosz.airship.item.ModItems;
 import hu.xannosz.airship.network.GetMapData;
 import hu.xannosz.airship.network.MapData;
 import hu.xannosz.airship.network.ModMessages;
-import hu.xannosz.airship.registries.AirShipRegistry;
-import hu.xannosz.airship.registries.Coordinate;
-import hu.xannosz.airship.registries.ExternalRegistry;
-import hu.xannosz.airship.registries.ShipData;
+import hu.xannosz.airship.registries.*;
 import hu.xannosz.airship.screen.NavigationTableMenu;
 import hu.xannosz.airship.util.ButtonId;
 import hu.xannosz.airship.util.ButtonUser;
@@ -249,7 +246,12 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 
 				if (isOpened) {
 					isOpened = false;
-					ShipUtils.fillMapData(serverLevel, mapData, scale, x, z);
+					if (isInShipDimension(level)) {
+						mapData.setColors(
+								DynamicRegistry.INSTANCE.getMapData(getBlockPos(), scale, serverLevel).getColors());
+					} else {
+						ShipUtils.fillMapData(serverLevel, mapData, scale, x, z);
+					}
 				}
 			}
 			clock--;

@@ -3,7 +3,6 @@ wiki?
 
 ### Beta ###
 radar show other ships
-nav table one generator per ship
 cc interface ship side
 speed-wind effect + sound ???
 complex recipes

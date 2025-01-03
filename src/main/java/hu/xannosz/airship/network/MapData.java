@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 @Setter
 public class MapData {
 	private final BlockPos position;
-	private final Map<Integer, Map<Integer, Integer>> colors;
+	private Map<Integer, Map<Integer, Integer>> colors;
 	private String name;
 	private ShipDirection direction;
 	private int realX;

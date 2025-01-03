@@ -1,4 +1,4 @@
-package hu.xannosz.airship.network;
+package hu.xannosz.airship.registries;
 
 import hu.xannosz.airship.registries.ShipData;
 import lombok.Data;

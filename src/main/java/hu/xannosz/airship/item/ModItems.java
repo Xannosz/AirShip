@@ -17,5 +17,8 @@ public class ModItems {
 	public static final RegistryObject<Item> RUNE_STONE = ITEMS.register("rune_stone", RuneStone::new);
 	public static final RegistryObject<Item> ENDER_ENGINE_BASE = ITEMS.register("ender_engine_base", () ->
 			new Item(new Item.Properties()));
+	public static final RegistryObject<Item> MECHANIC_LAYER = ITEMS.register("mechanic_layer", () ->
+			new Item(new Item.Properties()));
+
 	public static final Set<RegistryObject<BlockItem>> BLOCK_ITEMS = new HashSet<>();
 }

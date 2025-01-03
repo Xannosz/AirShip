@@ -9,6 +9,7 @@ import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,6 +23,7 @@ import javax.annotation.Nonnull;
 
 import static hu.xannosz.airship.config.AirshipConfig.ENERGY_HOLDER_SEND_ENERGY;
 import static hu.xannosz.airship.config.AirshipConfig.ENERGY_PER_CRYSTAL;
+import static hu.xannosz.airship.util.ShipUtils.handleMissingShipCore;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class EnderCrystalHolderBlockEntity extends BlockEntity {
@@ -93,6 +95,8 @@ public class EnderCrystalHolderBlockEntity extends BlockEntity {
 
 				if (entity instanceof CoreBlockEntity coreBlockEntity) {
 					crystal -= coreBlockEntity.increaseCrystalEnergy(Math.min(ENERGY_HOLDER_SEND_ENERGY.get(), crystal));
+				}else {
+					handleMissingShipCore((ServerLevel) level,shipData.getSWCore());
 				}
 				setChanged();
 			}

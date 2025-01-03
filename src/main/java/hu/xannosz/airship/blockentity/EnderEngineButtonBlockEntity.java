@@ -5,10 +5,12 @@ import hu.xannosz.airship.block.ModBlocks;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.ShipData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import static hu.xannosz.airship.util.ShipUtils.handleMissingShipCore;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class EnderEngineButtonBlockEntity extends BlockEntity {
@@ -42,7 +44,7 @@ public class EnderEngineButtonBlockEntity extends BlockEntity {
 							.setValue(EnderEngineButton.STATE, coreBlockEntity.isEnderEngineOn()), 2, 0);
 				}
 			} else {
-				throw new IllegalStateException("Our Container provider is missing!");
+				handleMissingShipCore((ServerLevel) level,shipData.getSWCore());
 			}
 		}
 		clock--;

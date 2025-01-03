@@ -5,10 +5,12 @@ import hu.xannosz.airship.block.ModBlocks;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.ShipData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import static hu.xannosz.airship.util.ShipUtils.handleMissingShipCore;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class CompassBlockEntity extends BlockEntity {
@@ -33,6 +35,8 @@ public class CompassBlockEntity extends BlockEntity {
 		if (entity instanceof CoreBlockEntity coreBlockEntity) {
 			level.setBlock(getBlockPos(), ModBlocks.COMPASS.get().defaultBlockState()
 					.setValue(Compass.POSITION, coreBlockEntity.getDirection().getCode()), 2, 0);
+		} else {
+			handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 		}
 	}
 }

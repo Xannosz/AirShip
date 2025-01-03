@@ -6,6 +6,7 @@ import hu.xannosz.airship.blockentity.ModBlockEntities;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.ShipData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -32,6 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static hu.xannosz.airship.util.ShipUtils.handleMissingShipCore;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class EnderEngineButton extends BaseEntityBlock {
@@ -72,7 +74,7 @@ public class EnderEngineButton extends BaseEntityBlock {
 			if (entity instanceof CoreBlockEntity coreBlockEntity) {
 				coreBlockEntity.toggleEnderEngine();
 			} else {
-				throw new IllegalStateException("Our Container provider is missing!");
+				handleMissingShipCore((ServerLevel) level,shipData.getSWCore());
 			}
 		}
 

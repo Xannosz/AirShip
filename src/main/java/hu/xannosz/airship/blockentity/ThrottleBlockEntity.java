@@ -6,10 +6,12 @@ import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.ShipData;
 import lombok.extern.slf4j.Slf4j;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import static hu.xannosz.airship.util.ShipUtils.handleMissingShipCore;
 import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 @Slf4j
@@ -33,6 +35,8 @@ public class ThrottleBlockEntity extends BlockEntity {
 
 			if (entity instanceof CoreBlockEntity coreBlockEntity) {
 				coreBlockEntity.faster();
+			} else {
+				handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 			}
 		}
 	}
@@ -47,6 +51,8 @@ public class ThrottleBlockEntity extends BlockEntity {
 
 			if (entity instanceof CoreBlockEntity coreBlockEntity) {
 				coreBlockEntity.slower();
+			} else {
+				handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 			}
 		}
 	}
@@ -73,6 +79,8 @@ public class ThrottleBlockEntity extends BlockEntity {
 				case 100 -> level.setBlock(getBlockPos(), ModBlocks.THROTTLE.get().defaultBlockState()
 						.setValue(Throttle.POSITION, 4), 2, 0);
 			}
+		} else {
+			handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 		}
 	}
 }

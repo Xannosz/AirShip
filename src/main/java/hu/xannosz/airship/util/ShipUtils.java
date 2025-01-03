@@ -6,6 +6,7 @@ import com.google.common.collect.Multiset;
 import com.google.common.collect.Multisets;
 import com.mojang.datafixers.util.Pair;
 import hu.xannosz.airship.AirShip;
+import hu.xannosz.airship.block.ModBlocks;
 import hu.xannosz.airship.network.MapData;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.Dimension;
@@ -329,5 +330,9 @@ public class ShipUtils {
 	private static BlockState getCorrectStateForFluidBlock(Level level, BlockState blockState, BlockPos pos) {
 		FluidState fluidstate = blockState.getFluidState();
 		return !fluidstate.isEmpty() && !blockState.isFaceSturdy(level, pos, Direction.UP) ? fluidstate.createLegacyBlock() : blockState;
+	}
+
+	public static void handleMissingShipCore(ServerLevel level, BlockPos pos){
+		level.setBlock(pos, ModBlocks.CORE.get().defaultBlockState(), 2, 0);
 	}
 }

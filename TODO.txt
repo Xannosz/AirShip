@@ -1,6 +1,5 @@
 ### Alpha ###
 radar show other ships
-
 clean up
 wiki?
 

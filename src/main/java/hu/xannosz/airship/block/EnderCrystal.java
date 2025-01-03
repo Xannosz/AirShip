@@ -29,7 +29,7 @@ public class EnderCrystal extends Block {
 										  @NotNull Player player, @NotNull InteractionHand hand,
 										  @NotNull BlockHitResult hit) {
 		if (!level.isClientSide()) {
-			level.playSound((Player) null, pos, SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.BLOCKS, 0.3F, 0.6F);
+			level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.BLOCKS, 0.3F, 0.6F);
 		}
 
 		return InteractionResult.sidedSuccess(level.isClientSide());

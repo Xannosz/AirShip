@@ -278,12 +278,12 @@ public class ShipUtils {
 										int l3 = k3 - 1;
 										mutableBlockPos2.set(mutableBlockPos1);
 
-										BlockState blockstate1;
+										BlockState blockState1;
 										do {
 											mutableBlockPos2.setY(l3--);
-											blockstate1 = levelchunk.getBlockState(mutableBlockPos2);
+											blockState1 = levelchunk.getBlockState(mutableBlockPos2);
 											++l2;
-										} while (l3 > level.getMinBuildHeight() && !blockstate1.getFluidState().isEmpty());
+										} while (l3 > level.getMinBuildHeight() && !blockState1.getFluidState().isEmpty());
 
 										blockstate = getCorrectStateForFluidBlock(level, blockstate, mutableBlockPos1);
 									}
@@ -332,7 +332,7 @@ public class ShipUtils {
 		return !fluidstate.isEmpty() && !blockState.isFaceSturdy(level, pos, Direction.UP) ? fluidstate.createLegacyBlock() : blockState;
 	}
 
-	public static void handleMissingShipCore(ServerLevel level, BlockPos pos){
+	public static void handleMissingShipCore(ServerLevel level, BlockPos pos) {
 		level.setBlock(pos, ModBlocks.CORE.get().defaultBlockState(), 2, 0);
 	}
 }

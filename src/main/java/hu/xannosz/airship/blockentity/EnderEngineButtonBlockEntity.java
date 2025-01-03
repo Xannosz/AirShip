@@ -44,7 +44,7 @@ public class EnderEngineButtonBlockEntity extends BlockEntity {
 							.setValue(EnderEngineButton.STATE, coreBlockEntity.isEnderEngineOn()), 2, 0);
 				}
 			} else {
-				handleMissingShipCore((ServerLevel) level,shipData.getSWCore());
+				handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 			}
 		}
 		clock--;

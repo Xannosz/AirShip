@@ -56,7 +56,7 @@ public class Throttle extends BaseEntityBlock {
 										  @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			BlockEntity entity = level.getBlockEntity(pos);
-			level.playSound((Player)null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
+			level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 			if (entity instanceof ThrottleBlockEntity throttleBlockEntity) {
 				throttleBlockEntity.slower();
@@ -73,7 +73,7 @@ public class Throttle extends BaseEntityBlock {
 	public void attack(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player) {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			BlockEntity entity = level.getBlockEntity(pos);
-			level.playSound((Player)null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
+			level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 			if (entity instanceof ThrottleBlockEntity throttleBlockEntity) {
 				throttleBlockEntity.faster();

@@ -57,6 +57,7 @@ public class RuneUtil {
 		return null;
 	}
 
+	@SuppressWarnings("ConstantConditions")
 	public static Map<BlockPos, String> filterRunes(Map<BlockPos, String> runes, ServerLevel level) {
 		Map<BlockPos, String> result = new HashMap<>();
 		for (Map.Entry<BlockPos, String> rune : runes.entrySet()) {

@@ -1,4 +1,4 @@
 package hu.xannosz.airship.util;
 
-public class CodeShouldNeverReach extends RuntimeException{
+public class CodeShouldNeverReach extends RuntimeException {
 }

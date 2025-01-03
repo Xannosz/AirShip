@@ -69,12 +69,12 @@ public class EnderEngineButton extends BaseEntityBlock {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			ShipData shipData = AirShipRegistry.INSTANCE.isInShip(pos, 0);
 			BlockEntity entity = level.getBlockEntity(shipData.getSWCore());
-			level.playSound((Player)null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
+			level.playSound(null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 			if (entity instanceof CoreBlockEntity coreBlockEntity) {
 				coreBlockEntity.toggleEnderEngine();
 			} else {
-				handleMissingShipCore((ServerLevel) level,shipData.getSWCore());
+				handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 			}
 		}
 

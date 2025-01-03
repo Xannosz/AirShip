@@ -1,6 +1,5 @@
 package hu.xannosz.airship.client;
 
-import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
@@ -19,8 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-
-import static net.minecraft.client.renderer.blockentity.TheEndPortalRenderer.END_SKY_LOCATION;
 
 @Slf4j
 @OnlyIn(Dist.CLIENT)
@@ -123,11 +120,11 @@ public class ShipDimensionEffect extends DimensionSpecialEffects {
 		RenderSystem.enableBlend();
 		RenderSystem.depthMask(false);
 		RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
-		RenderSystem.setShaderTexture(0, new ResourceLocation(AirShip.MOD_ID,"textures/dim/extended_nether.png"));
+		RenderSystem.setShaderTexture(0, new ResourceLocation(AirShip.MOD_ID, "textures/dim/extended_nether.png"));
 		Tesselator tesselator = Tesselator.getInstance();
 		BufferBuilder bufferbuilder = tesselator.getBuilder();
 
-		for(int i = 0; i < 6; ++i) {
+		for (int i = 0; i < 6; ++i) {
 			poseStack.pushPose();
 			if (i == 1) {
 				poseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(90.0F));

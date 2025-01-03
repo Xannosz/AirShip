@@ -27,6 +27,7 @@ public class ModBlocks {
 	public static final RegistryObject<Block> ENDER_ENGINE_BUTTON = registerBlock("ender_engine_button", EnderEngineButton::new);
 	public static final RegistryObject<Block> ENDER_ENGINE_GAUGE = registerBlock("ender_engine_gauge", EnderEngineGauge::new);
 
+	@SuppressWarnings("unused")
 	public static final RegistryObject<Block> YELLOW_LOOMER = registerBlock("yellow_loomer", Loomer::new);
 	public static final RegistryObject<Block> NAVIGATION_TABLE = registerBlock("navigation_table", NavigationTable::new);
 	public static final RegistryObject<Block> SMALL_RUNE = registerBlock("small_rune", SmallRune::new);

@@ -17,9 +17,11 @@ public class GetClientInformation {
 	public GetClientInformation() {
 	}
 
+	@SuppressWarnings("unused")
 	public GetClientInformation(FriendlyByteBuf buf) {
 	}
 
+	@SuppressWarnings("unused")
 	public void toBytes(FriendlyByteBuf buf) {
 	}
 

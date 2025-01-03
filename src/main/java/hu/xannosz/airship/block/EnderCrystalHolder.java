@@ -65,7 +65,7 @@ public class EnderCrystalHolder extends BaseEntityBlock {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			if (player.getItemInHand(hand).getItem().equals(ModBlocks.ENDER_CRYSTAL.get().asItem())) {
 				BlockEntity entity = level.getBlockEntity(pos);
-				level.playSound((Player) null, pos, SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.BLOCKS, 0.3F, 0.6F);
+				level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 				if (entity instanceof EnderCrystalHolderBlockEntity enderCrystalHolderBlockEntity) {
 					if (enderCrystalHolderBlockEntity.addCrystal()) {

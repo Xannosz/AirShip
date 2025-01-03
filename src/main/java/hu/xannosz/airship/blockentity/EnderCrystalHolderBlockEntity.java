@@ -95,8 +95,8 @@ public class EnderCrystalHolderBlockEntity extends BlockEntity {
 
 				if (entity instanceof CoreBlockEntity coreBlockEntity) {
 					crystal -= coreBlockEntity.increaseCrystalEnergy(Math.min(ENERGY_HOLDER_SEND_ENERGY.get(), crystal));
-				}else {
-					handleMissingShipCore((ServerLevel) level,shipData.getSWCore());
+				} else {
+					handleMissingShipCore((ServerLevel) level, shipData.getSWCore());
 				}
 				setChanged();
 			}

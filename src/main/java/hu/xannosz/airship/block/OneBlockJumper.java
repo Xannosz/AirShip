@@ -57,7 +57,7 @@ public class OneBlockJumper extends BaseEntityBlock {
 										  @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
 		if (!level.isClientSide() || !isInShipDimension(level)) {
 			BlockEntity entity = level.getBlockEntity(pos);
-			level.playSound((Player)null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
+			level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 			if (entity instanceof OneBlockJumperBlockEntity oneBlockJumperBlockEntity) {
 				oneBlockJumperBlockEntity.turn();
@@ -74,7 +74,7 @@ public class OneBlockJumper extends BaseEntityBlock {
 	public void attack(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player) {
 		if (!level.isClientSide() && isInShipDimension(level)) {
 			BlockEntity entity = level.getBlockEntity(pos);
-			level.playSound((Player)null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
+			level.playSound(null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
 
 			if (entity instanceof OneBlockJumperBlockEntity oneBlockJumperBlockEntity) {
 				oneBlockJumperBlockEntity.jump();
@@ -99,10 +99,10 @@ public class OneBlockJumper extends BaseEntityBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-		if(blockState.getValue(CLICKED)) {
+		if (blockState.getValue(CLICKED)) {
 			return Shapes.or(Block.box(1, 0, 1, 15, 1, 15),
 					Block.box(6, 1, 6, 10, 2.5, 10));
-		}else {
+		} else {
 			return Shapes.or(Block.box(1, 0, 1, 15, 1, 15),
 					Block.box(6, 1, 6, 10, 4, 10));
 		}

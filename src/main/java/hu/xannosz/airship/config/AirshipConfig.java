@@ -17,7 +17,7 @@ public class AirshipConfig {
 	public static final ForgeConfigSpec.ConfigValue<Integer> RADAR_SCAN_RADIUS;
 
 	static {
-		BUILDER.push("Configs for Better Minecarts Mod");
+		BUILDER.push("Configs for Poor man's airship mod");
 
 		CRYSTAL_ENERGY_PER_THOUSAND_BLOCK = BUILDER.comment("Crystal energy per thousand block")
 				.defineInRange("crystalEnergyPerThousandBlock", 4, 1, 20);

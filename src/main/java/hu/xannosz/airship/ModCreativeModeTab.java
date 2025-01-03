@@ -13,6 +13,7 @@ public class ModCreativeModeTab {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
 			DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AirShip.MOD_ID);
 
+	@SuppressWarnings("unused")
 	public static final RegistryObject<CreativeModeTab> AIRSHIP_TAB = CREATIVE_MODE_TABS.register("airship_tab",
 			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.SHIP_HELM.get()))
 					.title(Component.translatable("creative_tab." + AirShip.MOD_ID + ".airship_tab"))

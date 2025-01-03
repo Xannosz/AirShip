@@ -24,6 +24,7 @@ import static hu.xannosz.airship.AirShip.MOD_ID;
 public class ModDimensions {
 	public static final ResourceKey<LevelStem> SHIP_DIMENSION_KEY = ResourceKey.create(Registries.LEVEL_STEM,
 			new ResourceLocation(MOD_ID, "ship_dimension"));
+	@SuppressWarnings("unused")
 	public static final ResourceKey<Level> SHIP_DIMENSION_LEVEL_KEY = ResourceKey.create(Registries.DIMENSION,
 			new ResourceLocation(MOD_ID, "ship_dimension"));
 	public static final ResourceKey<DimensionType> SHIP_DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE,
@@ -42,7 +43,7 @@ public class ModDimensions {
 				-64, // minY
 				480, // height
 				480, // logicalHeight
-				BlockTags.INFINIBURN_OVERWORLD, // infiniburn
+				BlockTags.INFINIBURN_OVERWORLD, // infinite burn
 				new ResourceLocation(MOD_ID, "ship_dimension"), // effectsLocation
 				1.0f, // ambientLight
 				new DimensionType.MonsterSettings(false, false, ConstantInt.of(0), 0)));

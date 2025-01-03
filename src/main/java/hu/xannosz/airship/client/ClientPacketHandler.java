@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public class ClientPacketHandler {
+	@SuppressWarnings("unused")
 	public static void handleMapData(MapData mapData, Supplier<NetworkEvent.Context> ctx) {
 		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(mapData.getPosition());
 		if (entity instanceof NavigationTableBlockEntity navigationTableBlockEntity) {
@@ -24,6 +25,7 @@ public class ClientPacketHandler {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static void handleRadarData(RadarData radarData, Supplier<NetworkEvent.Context> ctx) {
 		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(radarData.getPosition());
 		if (entity instanceof RadarBlockEntity radarBlockEntity) {
@@ -31,6 +33,7 @@ public class ClientPacketHandler {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static void handleSmallRuneData(SmallRuneData smallRuneData, Supplier<NetworkEvent.Context> ctx) {
 		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(smallRuneData.getPosition());
 		if (entity instanceof SmallRuneBlockEntity smallRuneBlockEntity) {
@@ -38,6 +41,7 @@ public class ClientPacketHandler {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static void handlePlaySoundPacket(PlaySoundPacket playSoundPacket, Supplier<NetworkEvent.Context> ctx) {
 		if (playSoundPacket.isInTheShip()) {
 			Objects.requireNonNull(Minecraft.getInstance().level).playSound(Minecraft.getInstance().player,

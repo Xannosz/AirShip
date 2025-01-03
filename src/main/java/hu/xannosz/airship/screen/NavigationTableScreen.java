@@ -86,7 +86,7 @@ public class NavigationTableScreen extends AbstractContainerScreen<NavigationTab
 		for (int runX = 0; runX < 100; runX++) {
 			for (int runY = 0; runY < 100; runY++) {
 				guiGraphics.fill(x + 8 + runX, y + 8 + runY,
-						x + 8 + runX + 1, +y + 8 + runY + 1,
+						x + 8 + runX + 1, y + 8 + runY + 1,
 						correctHue(MapColor.getColorFromPackedId(getMenu().getMapData().getColor(runX, runY)))
 				);
 			}

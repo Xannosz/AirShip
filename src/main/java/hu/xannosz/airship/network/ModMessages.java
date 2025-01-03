@@ -30,11 +30,6 @@ public class ModMessages {
 				.encoder(ClickOnButton::toBytes)
 				.consumerMainThread(ClickOnButton::handler)
 				.add();
-		INSTANCE.messageBuilder(ClickOnMap.class, id(), NetworkDirection.PLAY_TO_SERVER)
-				.decoder(ClickOnMap::new)
-				.encoder(ClickOnMap::toBytes)
-				.consumerMainThread(ClickOnMap::handler)
-				.add();
 		INSTANCE.messageBuilder(GetMapData.class, id(), NetworkDirection.PLAY_TO_SERVER)
 				.decoder(GetMapData::new)
 				.encoder(GetMapData::toBytes)

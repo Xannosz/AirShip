@@ -18,7 +18,7 @@ public class TeleportHandler {
 	public static void onLivingTick(LivingEvent.LivingTickEvent e) {
 		final LivingEntity entity = e.getEntity();
 
-		if (entity.level().isClientSide() || (!(entity instanceof Player) && !ShipUtils.isInShipDimension(e.getEntity().level()) )) {
+		if (entity.level().isClientSide() || (!(entity instanceof Player) && !ShipUtils.isInShipDimension(e.getEntity().level()))) {
 			return;
 		}
 

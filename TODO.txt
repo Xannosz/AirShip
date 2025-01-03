@@ -1,15 +1,15 @@
 ### Alpha ###
-radar show other ships
-clean up
 wiki?
 
 ### Beta ###
+radar show other ships
 nav table one generator per ship
+cc interface ship side
 speed-wind effect + sound ???
 complex recipes
 
 ### Release ###
-more ship controller tool (modern, lantean, goa'uld, star-trek, steam-punk)
+more ship controller tool (half block, modern, lantean, goa'uld, star-trek, steam-punk)
 cosmetically extensions?
 robot pilot
 

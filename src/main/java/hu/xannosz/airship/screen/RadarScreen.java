@@ -51,7 +51,7 @@ public class RadarScreen extends AbstractContainerScreen<RadarMenu> {
 			for (int runZ = -75; runZ < 75; runZ++) {
 				if (!radarData.getShip(runX, runZ).equals("")) {
 					guiGraphics.fill(x + 8 + runX, y + 8 + runZ,
-							x + 8 + runX + 1, +y + 8 + runZ + 1,
+							x + 8 + runX + 1, y + 8 + runZ + 1,
 							0x385fA1
 					);
 				}

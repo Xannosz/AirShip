@@ -7,7 +7,7 @@ import com.google.common.collect.Multisets;
 import com.mojang.datafixers.util.Pair;
 import hu.xannosz.airship.AirShip;
 import hu.xannosz.airship.block.ModBlocks;
-import hu.xannosz.airship.network.MapData;
+import hu.xannosz.airship.computer.GroundRadarData;
 import hu.xannosz.airship.registries.AirShipRegistry;
 import hu.xannosz.airship.registries.Dimension;
 import hu.xannosz.airship.registries.ExternalRegistry;
@@ -233,7 +233,7 @@ public class ShipUtils {
 		return new BlockPos((int) data.getRWCoreX(), yPosition, (int) data.getRWCoreZ());
 	}
 
-	public static void fillMapData(Level level, MapData mapData,
+	public static void fillMapData(Level level, GroundRadarData mapData,
 								   int scale, int centerX, int centerZ) {
 		BlockPos.MutableBlockPos mutableBlockPos1 = new BlockPos.MutableBlockPos();
 		BlockPos.MutableBlockPos mutableBlockPos2 = new BlockPos.MutableBlockPos();

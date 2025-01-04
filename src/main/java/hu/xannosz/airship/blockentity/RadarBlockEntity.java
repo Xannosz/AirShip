@@ -1,19 +1,18 @@
 package hu.xannosz.airship.blockentity;
 
-import hu.xannosz.airship.config.AirshipConfig;
+import hu.xannosz.airship.computer.ComputerModule;
+import hu.xannosz.airship.computer.IndividualShipRadarData;
+import hu.xannosz.airship.computer.ShipRadarData;
 import hu.xannosz.airship.network.GetRadarData;
 import hu.xannosz.airship.network.ModMessages;
 import hu.xannosz.airship.network.RadarData;
-import hu.xannosz.airship.registries.AirShipRegistry;
-import hu.xannosz.airship.registries.DynamicRegistry;
-import hu.xannosz.airship.registries.ShipData;
 import hu.xannosz.airship.screen.RadarMenu;
-import hu.xannosz.airship.util.ShipUtils;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,8 +26,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static hu.xannosz.airship.util.ShipUtils.isInShipDimension;
 
 public class RadarBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -93,32 +90,21 @@ public class RadarBlockEntity extends BlockEntity implements MenuProvider {
 		} else {
 			if (clock == 0) {
 				clock = 5;
-				List<ShipData> ships = new ArrayList<>();
+				List<ShipRadarData> shipRadarData = new ArrayList<>();
 				if (isOpened) {
-					if (isInShipDimension(level)) {
-						ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
-						ships = DynamicRegistry.INSTANCE.getRadarData(shipData.getSWCore()).getShips();
-					} else {
-						ships = AirShipRegistry.INSTANCE.getShipsInRadius(getBlockPos(), ShipUtils.toDimensionCode(level), AirshipConfig.RADAR_SCAN_RADIUS.get());
-					}
+					shipRadarData = ComputerModule.getShipRadarData((ServerLevel) level, getBlockPos());
 				}
-				radarData.setName("");
-				radarData.setDirection(null);
-				radarData.setRealX(0);
-				radarData.setRealZ(0);
-				radarData.setSpeed(0);
-				for (ShipData ship : ships) {
-					radarData.setShip(getBlockPos().getX() - (int) ship.getRWCoreX(), getBlockPos().getZ() - (int) ship.getRWCoreZ(), ship.getName());
-					if (ship.getName().equals(selectedShipName)) {
-						radarData.setName(ship.getName());
-						radarData.setRealX((int) ship.getRWCoreX());
-						radarData.setRealZ((int) ship.getRWCoreZ());
-						if (level.getBlockEntity(ship.getSWCore()) instanceof CoreBlockEntity coreBlockEntity) {
-							radarData.setDirection(coreBlockEntity.getDirection());
-							radarData.setSpeed(coreBlockEntity.getSpeed());
-						}
-					}
+				for (ShipRadarData ship : shipRadarData) {
+					radarData.setShip(ship.getWorldCoordinateX(), ship.getWorldCoordinateZ(), ship.getShipName());
 				}
+
+				IndividualShipRadarData individualShipRadarData = ComputerModule.getIndividualShipRadarData(
+						(ServerLevel) level, getBlockPos(), selectedShipName);
+				radarData.setName(individualShipRadarData.getShipName());
+				radarData.setRealX(individualShipRadarData.getWorldCoordinateX());
+				radarData.setRealZ(individualShipRadarData.getWorldCoordinateZ());
+				radarData.setDirection(individualShipRadarData.getDirection());
+				radarData.setSpeed(individualShipRadarData.getSpeed());
 			}
 			clock--;
 		}

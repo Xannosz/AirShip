@@ -48,11 +48,6 @@ public class MapData {
 		hasTarget = buf.readBoolean();
 	}
 
-	public void setColor(int x, int y, int color) {
-		colors.computeIfAbsent(x, k -> new HashMap<>());
-		colors.get(x).put(y, color);
-	}
-
 	public int getColor(int x, int y) {
 		return colors.getOrDefault(x, new HashMap<>()).getOrDefault(y, 0);
 	}

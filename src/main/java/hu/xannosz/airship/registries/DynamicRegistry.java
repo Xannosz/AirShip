@@ -1,8 +1,8 @@
 package hu.xannosz.airship.registries;
 
 import com.mojang.datafixers.util.Pair;
+import hu.xannosz.airship.computer.GroundRadarData;
 import hu.xannosz.airship.config.AirshipConfig;
-import hu.xannosz.airship.network.MapData;
 import hu.xannosz.airship.util.ShipUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -48,7 +48,7 @@ public class DynamicRegistry {
 		InnerMapData innerMapData = new InnerMapData();
 		innerMapData.setTime(System.currentTimeMillis());
 		ShipData shipData = AirShipRegistry.INSTANCE.isInShip(pos, 0);
-		MapData mapD = new MapData(pos);
+		GroundRadarData mapD = new GroundRadarData();
 		ShipUtils.fillMapData(level, mapD, scale, (int) shipData.getRWCoreX(), (int) shipData.getRWCoreZ());
 		innerMapData.setColors(mapD.getColors());
 		mapData.put(new Pair<>(pos, scale), innerMapData);

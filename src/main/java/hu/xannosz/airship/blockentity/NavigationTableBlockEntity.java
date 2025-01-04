@@ -1,15 +1,18 @@
 package hu.xannosz.airship.blockentity;
 
+import hu.xannosz.airship.computer.ComputerModule;
 import hu.xannosz.airship.item.CoordinatePaper;
 import hu.xannosz.airship.item.ModItems;
 import hu.xannosz.airship.network.GetMapData;
 import hu.xannosz.airship.network.MapData;
 import hu.xannosz.airship.network.ModMessages;
-import hu.xannosz.airship.registries.*;
+import hu.xannosz.airship.registries.AirShipRegistry;
+import hu.xannosz.airship.registries.Coordinate;
+import hu.xannosz.airship.registries.ExternalRegistry;
+import hu.xannosz.airship.registries.ShipData;
 import hu.xannosz.airship.screen.NavigationTableMenu;
 import hu.xannosz.airship.util.ButtonId;
 import hu.xannosz.airship.util.ButtonUser;
-import hu.xannosz.airship.util.ShipUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -204,8 +207,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 			if (clock == 0) {
 				clock = 5;
 
-				int x;
-				int z;
 				ServerLevel serverLevel;
 				if (isInShipDimension(level)) {
 					ShipData shipData = AirShipRegistry.INSTANCE.isInShip(getBlockPos(), 0);
@@ -213,9 +214,6 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 					mapData.setRealX((int) Math.round(shipData.getRWCoreX()));
 					mapData.setRealZ((int) Math.round(shipData.getRWCoreZ()));
 					mapData.setName(shipData.getName());
-
-					x = (((int) Math.round(shipData.getRWCoreX())) / scale) * scale;
-					z = (((int) Math.round(shipData.getRWCoreZ())) / scale) * scale;
 
 					serverLevel = toLevel(shipData.getDimensionCode(), level);
 
@@ -225,12 +223,8 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 						mapData.setSpeed(coreBlockEntity.getSpeed());
 					}
 				} else {
-
 					mapData.setRealX(getBlockPos().getX());
 					mapData.setRealZ(getBlockPos().getZ());
-
-					x = (getBlockPos().getX() / scale) * scale;
-					z = (getBlockPos().getZ() / scale) * scale;
 					serverLevel = (ServerLevel) level;
 				}
 
@@ -246,12 +240,8 @@ public class NavigationTableBlockEntity extends BlockEntity implements MenuProvi
 
 				if (isOpened) {
 					isOpened = false;
-					if (isInShipDimension(level)) {
-						mapData.setColors(
-								DynamicRegistry.INSTANCE.getMapData(getBlockPos(), scale, serverLevel).getColors());
-					} else {
-						ShipUtils.fillMapData(serverLevel, mapData, scale, x, z);
-					}
+					mapData.setColors(ComputerModule.getGroundRadarData((ServerLevel) level,
+							getBlockPos(), scale).getColors());
 				}
 			}
 			clock--;

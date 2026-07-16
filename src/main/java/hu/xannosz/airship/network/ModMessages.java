@@ -65,6 +65,11 @@ public class ModMessages {
 				.encoder(SmallRuneData::toBytes)
 				.consumerMainThread(SmallRuneData::handler)
 				.add();
+		INSTANCE.messageBuilder(LocalRuneData.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+				.decoder(LocalRuneData::new)
+				.encoder(LocalRuneData::toBytes)
+				.consumerMainThread(LocalRuneData::handler)
+				.add();
 		INSTANCE.messageBuilder(PlaySoundPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
 				.decoder(PlaySoundPacket::new)
 				.encoder(PlaySoundPacket::toBytes)

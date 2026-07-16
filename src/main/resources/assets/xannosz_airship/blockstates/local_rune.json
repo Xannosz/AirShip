@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "xannosz_airship:block/local_rune",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "xannosz_airship:block/local_rune",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "xannosz_airship:block/local_rune"
+    },
+    "facing=west": {
+      "model": "xannosz_airship:block/local_rune",
+      "y": 90
+    }
+  }
+}

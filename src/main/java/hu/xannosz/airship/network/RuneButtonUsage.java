@@ -1,5 +1,6 @@
 package hu.xannosz.airship.network;
 
+import hu.xannosz.airship.blockentity.LocalRuneBlockEntity;
 import hu.xannosz.airship.blockentity.SmallRuneBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -36,6 +37,9 @@ public class RuneButtonUsage {
 			BlockEntity entity = Objects.requireNonNull(context.getSender()).level().getBlockEntity(position);
 			if (entity instanceof SmallRuneBlockEntity smallRuneBlockEntity) {
 				smallRuneBlockEntity.jumpToRune(runeId);
+			}
+			if (entity instanceof LocalRuneBlockEntity localRuneBlockEntity) {
+				localRuneBlockEntity.jumpToRune(runeId);
 			}
 		});
 	}

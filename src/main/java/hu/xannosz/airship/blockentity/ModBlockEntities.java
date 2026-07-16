@@ -78,6 +78,12 @@ public class ModBlockEntities {
 							SmallRuneBlockEntity::new,
 							ModBlocks.SMALL_RUNE.get()).build(null));
 
+	public static final RegistryObject<BlockEntityType<LocalRuneBlockEntity>> LOCAL_RUNE_BLOCK_ENTITY =
+			BLOCK_ENTITIES.register("local_rune_block_entity", () ->
+					BlockEntityType.Builder.of(
+							LocalRuneBlockEntity::new,
+							ModBlocks.LOCAL_RUNE.get()).build(null));
+
 	public static final RegistryObject<BlockEntityType<RadarBlockEntity>> RADAR_BLOCK_ENTITY =
 			BLOCK_ENTITIES.register("radar_block_entity", () ->
 					BlockEntityType.Builder.of(

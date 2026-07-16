@@ -1,12 +1,10 @@
 package hu.xannosz.airship.client;
 
+import hu.xannosz.airship.blockentity.LocalRuneBlockEntity;
 import hu.xannosz.airship.blockentity.NavigationTableBlockEntity;
 import hu.xannosz.airship.blockentity.RadarBlockEntity;
 import hu.xannosz.airship.blockentity.SmallRuneBlockEntity;
-import hu.xannosz.airship.network.MapData;
-import hu.xannosz.airship.network.PlaySoundPacket;
-import hu.xannosz.airship.network.RadarData;
-import hu.xannosz.airship.network.SmallRuneData;
+import hu.xannosz.airship.network.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -38,6 +36,14 @@ public class ClientPacketHandler {
 		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(smallRuneData.getPosition());
 		if (entity instanceof SmallRuneBlockEntity smallRuneBlockEntity) {
 			smallRuneBlockEntity.setRuneData(smallRuneData);
+		}
+	}
+
+	@SuppressWarnings("unused")
+	public static void handleLocalRuneData(LocalRuneData localRuneData, Supplier<NetworkEvent.Context> ctx) {
+		BlockEntity entity = Objects.requireNonNull(Minecraft.getInstance().level).getBlockEntity(localRuneData.getPosition());
+		if (entity instanceof LocalRuneBlockEntity localRuneBlockEntity) {
+			localRuneBlockEntity.setRuneData(localRuneData);
 		}
 	}
 

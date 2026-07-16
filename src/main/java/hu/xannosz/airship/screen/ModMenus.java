@@ -16,6 +16,8 @@ public class ModMenus {
 			registerMenuType(NavigationTableMenu::new, "navigation_table_menu");
 	public static final RegistryObject<MenuType<RuneMenu>> RUNE_MENU =
 			registerMenuType(RuneMenu::new, "rune_menu");
+	public static final RegistryObject<MenuType<LocalRuneMenu>> LOCAL_RUNE_MENU =
+			registerMenuType(LocalRuneMenu::new, "local_rune_menu");
 
 	public static final RegistryObject<MenuType<RadarMenu>> RADAR_MENU =
 			registerMenuType(RadarMenu::new, "radar_menu");

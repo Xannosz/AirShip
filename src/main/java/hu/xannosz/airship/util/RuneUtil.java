@@ -1,5 +1,6 @@
 package hu.xannosz.airship.util;
 
+import hu.xannosz.airship.blockentity.LocalRuneBlockEntity;
 import hu.xannosz.airship.blockentity.SmallRuneBlockEntity;
 import hu.xannosz.airship.dimension.DimensionTransporter;
 import hu.xannosz.airship.network.ModMessages;
@@ -65,6 +66,8 @@ public class RuneUtil {
 				if (smallRuneBlockEntity.isEnabled()) {
 					result.put(rune.getKey(), rune.getValue());
 				}
+			} else if (level.getBlockEntity(rune.getKey()) instanceof LocalRuneBlockEntity) {
+				result.put(rune.getKey(), rune.getValue());
 			} else {
 				RuneRegistry.INSTANCE.deleteRune(toDimensionCode(level), rune.getKey());
 			}
